@@ -1,0 +1,10 @@
+# my_standalone_bot/requirements.txt
+
+aiogram
+aiohttp
+python-dotenv
+# --- NEU ---
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+pytz # Für Zeitzonenberechnungen

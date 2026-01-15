@@ -1,0 +1,69 @@
+<!-- api/templates/api/index.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест Google Календаря</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; }
+        ul { list-style: none; padding: 0; }
+        li { background: #f4f4f4; margin-bottom: 10px; padding: 10px; border-radius: 5px; }
+        button { background-color: #4285F4; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Тестирование Google Calendar API в Django</h1>
+
+    <!-- Эта ссылка ведет на наш URL для авторизации -->
+    <a href="{% url 'google_authorize' %}">
+        <button>Войти через Google</button>
+    </a>
+
+    <hr>
+    <h2>Ближайшие события:</h2>
+    <button onclick="fetchGoogleEvents()">Обновить события</button>
+    <ul id="google-events">
+        <!-- Сюда будут загружены события -->
+    </ul>
+
+    <script>
+        // Функция для запроса событий с нашего бэкенда
+        async function fetchGoogleEvents() {
+            const eventsList = document.getElementById('google-events');
+            eventsList.innerHTML = '<li>Загрузка...</li>';
+
+            try {
+                // Отправляем запрос на наш новый API-маршрут
+                const response = await fetch("{% url 'google_events' %}", {
+                    method: 'GET',
+                    credentials: 'include' // Важно для передачи cookie с сессией
+                });
+
+                if (response.ok) {
+                    const events = await response.json();
+                    eventsList.innerHTML = '';
+                    if (events.length === 0) {
+                        eventsList.innerHTML = '<li>Событий не найдено.</li>';
+                    } else {
+                        events.forEach(event => {
+                            const start = event.start.dateTime || event.start.date;
+                            const li = document.createElement('li');
+                            li.textContent = `${new Date(start).toLocaleString()} - ${event.summary}`;
+                            eventsList.appendChild(li);
+                        });
+                    }
+                } else {
+                     const error = await response.json();
+                     eventsList.innerHTML = `<li>Ошибка: ${error.error || 'Не удалось загрузить события.'}</li>`;
+                }
+            } catch (error) {
+                 eventsList.innerHTML = `<li>Сетевая ошибка: ${error.message}</li>`;
+            }
+        }
+
+        // Автоматически пытаемся загрузить события при загрузке страницы
+        document.addEventListener('DOMContentLoaded', fetchGoogleEvents);
+    </script>
+</body>
+</html>

@@ -1,0 +1,788 @@
+2026-01-13 23:01:51,366 - __main__ - CRITICAL - Критическая ошибка при запуске бота: Passing `parse_mode`, `disable_web_page_preview` or `protect_content` to Bot initializer is not supported anymore. These arguments have been removed in 3.7.0 version. Use `default=DefaultBotProperties(parse_mode='HTML')` argument instead.
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 247, in <module>
+    asyncio.run(main())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 231, in main
+    bot = Bot(token=BOT_TOKEN, parse_mode="HTML") # parse_mode по умолчанию для ответов бота
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 302, in __init__
+    raise TypeError(
+TypeError: Passing `parse_mode`, `disable_web_page_preview` or `protect_content` to Bot initializer is not supported anymore. These arguments have been removed in 3.7.0 version. Use `default=DefaultBotProperties(parse_mode='HTML')` argument instead.
+2026-01-13 23:03:37,271 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:03:37,271 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:03:37,343 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:03:49,442 - aiogram.event - INFO - Update id=831009969 is handled. Duration 223 ms by bot id=8165354832
+2026-01-13 23:03:53,086 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:03:53,087 - __main__ - INFO - Запрос событий Google Календаря для 2026-01-13...
+2026-01-13 23:03:53,855 - aiogram.event - INFO - Update id=831009970 is not handled. Duration 848 ms by bot id=8165354832
+2026-01-13 23:03:53,855 - aiogram.event - ERROR - Cause exception while process update id=831009970 by bot id=8165354832
+TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Character '-' is reserved and must be escaped with the preceding '\'
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 153, in command_today_handler
+    await message.answer(today_schedule, parse_mode="MarkdownV2") # MarkdownV2 более строгий, но лучше
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 484, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Character '-' is reserved and must be escaped with the preceding '\'
+2026-01-13 23:04:58,966 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:04:58,966 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:04:58,966 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:05:06,165 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:05:06,165 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:05:06,237 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:05:13,854 - aiogram.event - INFO - Update id=831009971 is handled. Duration 251 ms by bot id=8165354832
+2026-01-13 23:05:16,172 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:05:16,172 - __main__ - INFO - Запрос событий Google Календаря для 2026-01-13...
+2026-01-13 23:05:17,011 - aiogram.event - INFO - Update id=831009972 is handled. Duration 925 ms by bot id=8165354832
+2026-01-13 23:06:35,474 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:06:35,474 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:06:35,474 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:06:41,337 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:06:41,337 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:06:41,400 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:06:46,539 - aiogram.event - INFO - Update id=831009973 is handled. Duration 241 ms by bot id=8165354832
+2026-01-13 23:06:49,247 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:06:49,248 - __main__ - INFO - Запрос событий Google Календаря с 2026-01-12T00:00:00+03:00 по 2026-01-18T23:59:59.999999+03:00...
+2026-01-13 23:06:50,327 - aiogram.event - INFO - Update id=831009974 is handled. Duration 1155 ms by bot id=8165354832
+2026-01-13 23:06:56,159 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:06:56,159 - __main__ - INFO - Запрос событий Google Календаря с 2026-01-01T00:00:00+03:00 по 2026-01-31T23:59:59.999999+03:00...
+2026-01-13 23:06:57,772 - aiogram.event - INFO - Update id=831009975 is not handled. Duration 1687 ms by bot id=8165354832
+2026-01-13 23:06:57,772 - aiogram.event - ERROR - Cause exception while process update id=831009975 by bot id=8165354832
+TelegramBadRequest: Telegram server says - Bad Request: message is too long
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 203, in command_month_handler
+    await message.answer(schedule)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 484, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: message is too long
+2026-01-13 23:08:09,519 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:08:09,520 - __main__ - INFO - Запрос событий Google Календаря с 2026-01-13T00:00:00+03:00 по 2026-01-13T23:59:59.999999+03:00...
+2026-01-13 23:08:10,390 - aiogram.event - INFO - Update id=831009976 is handled. Duration 943 ms by bot id=8165354832
+2026-01-13 23:08:17,351 - aiogram.event - INFO - Update id=831009977 is handled. Duration 2534 ms by bot id=8165354832
+2026-01-13 23:08:25,447 - aiogram.event - INFO - Update id=831009978 is handled. Duration 1295 ms by bot id=8165354832
+2026-01-13 23:08:37,118 - aiogram.event - INFO - Update id=831009979 is handled. Duration 1170 ms by bot id=8165354832
+2026-01-13 23:08:45,278 - aiogram.event - INFO - Update id=831009980 is handled. Duration 2889 ms by bot id=8165354832
+2026-01-13 23:08:59,923 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:08:59,923 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:08:59,923 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:09:10,612 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:09:10,612 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:09:10,684 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:09:18,141 - aiogram.event - INFO - Update id=831009981 is handled. Duration 228 ms by bot id=8165354832
+2026-01-13 23:09:22,275 - __main__ - INFO - Эмуляция запроса к API Личного кабинета...
+2026-01-13 23:09:22,277 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:09:22,278 - __main__ - INFO - Запрос событий Google Календаря с 2026-01-13T00:00:22.275121+03:00 по 2026-01-13T23:59:22.275143+03:00...
+2026-01-13 23:09:23,132 - aiogram.event - INFO - Update id=831009982 is handled. Duration 938 ms by bot id=8165354832
+2026-01-13 23:10:43,515 - aiogram.event - INFO - Update id=831009983 is handled. Duration 84 ms by bot id=8165354832
+2026-01-13 23:10:48,863 - __main__ - INFO - Эмуляция запроса к API Личного кабинета...
+2026-01-13 23:10:48,863 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:10:48,864 - __main__ - INFO - Запрос событий Google Календаря с 2026-01-13T00:00:48.863125+03:00 по 2026-01-13T23:59:48.863141+03:00...
+2026-01-13 23:10:49,968 - aiogram.event - INFO - Update id=831009984 is handled. Duration 1186 ms by bot id=8165354832
+2026-01-13 23:11:59,974 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:11:59,975 - __main__ - INFO - Запрос событий Google Календаря с 2026-01-01T00:00:00+03:00 по 2026-01-31T00:00:00+03:00...
+2026-01-13 23:12:01,491 - aiogram.event - INFO - Update id=831009985 is handled. Duration 1636 ms by bot id=8165354832
+2026-01-13 23:12:32,076 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:12:32,076 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:12:32,076 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:13:05,047 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:13:05,048 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:13:05,119 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:13:15,939 - aiogram.event - INFO - Update id=831009986 is handled. Duration 328 ms by bot id=8165354832
+2026-01-13 23:13:18,298 - __main__ - WARNING - Логин/пароль от Skyeng не заданы в .env. Пропускаем.
+2026-01-13 23:13:18,299 - aiogram.event - INFO - Update id=831009987 is not handled. Duration 76 ms by bot id=8165354832
+2026-01-13 23:13:18,299 - aiogram.event - ERROR - Cause exception while process update id=831009987 by bot id=8165354832
+NameError: name 'get_google_credentials' is not defined
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 196, in command_today_handler
+    google_events, skyeng_tasks = await asyncio.gather(google_task, skyeng_task)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 150, in fetch_google_events
+    creds = await asyncio.to_thread(get_google_credentials) # В будущем: get_user_google_creds(user_id)
+                                    ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_google_credentials' is not defined
+2026-01-13 23:16:26,486 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:16:26,486 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:16:26,487 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:17:40,194 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:17:40,194 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:17:40,262 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:17:42,621 - aiogram.event - INFO - Update id=831009988 is not handled. Duration 193 ms by bot id=8165354832
+2026-01-13 23:17:42,621 - aiogram.event - ERROR - Cause exception while process update id=831009988 by bot id=8165354832
+TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "содержимое_json" at byte offset 424
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 198, in command_start_handler
+    await message.answer(
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 484, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "содержимое_json" at byte offset 424
+2026-01-13 23:19:17,457 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:19:17,458 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:19:17,458 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:19:19,561 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:19:19,561 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:19:19,618 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:19:22,403 - aiogram.event - INFO - Update id=831009989 is not handled. Duration 189 ms by bot id=8165354832
+2026-01-13 23:19:22,403 - aiogram.event - ERROR - Cause exception while process update id=831009989 by bot id=8165354832
+TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "содержимое_json" at byte offset 595
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 183, in command_start_handler
+    await message.answer(text, parse_mode=ParseMode.HTML)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 484, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "содержимое_json" at byte offset 595
+2026-01-13 23:20:08,631 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:20:08,631 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:20:08,631 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:20:08,815 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:21:30,174 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:21:30,174 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:21:30,233 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:21:35,288 - aiogram.event - INFO - Update id=831009990 is not handled. Duration 182 ms by bot id=8165354832
+2026-01-13 23:21:35,288 - aiogram.event - ERROR - Cause exception while process update id=831009990 by bot id=8165354832
+TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "содержимое_json" at byte offset 595
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 183, in command_start_handler
+    await message.answer(text, parse_mode=ParseMode.HTML)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 484, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "содержимое_json" at byte offset 595
+2026-01-13 23:21:38,953 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:21:38,953 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:21:38,954 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:21:39,162 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:21:48,211 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:21:48,211 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:21:48,275 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:21:50,027 - aiogram.event - INFO - Update id=831009991 is handled. Duration 290 ms by bot id=8165354832
+2026-01-13 23:21:54,031 - aiogram.event - INFO - Update id=831009992 is handled. Duration 93 ms by bot id=8165354832
+2026-01-13 23:22:40,325 - aiogram.event - INFO - Update id=831009993 is handled. Duration 128 ms by bot id=8165354832
+2026-01-13 23:23:36,104 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:23:36,952 - aiogram.event - INFO - Update id=831009994 is handled. Duration 929 ms by bot id=8165354832
+2026-01-13 23:41:46,927 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:41:46,927 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:41:46,927 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:42:48,994 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:42:48,994 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:42:49,054 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:42:53,719 - aiogram.event - INFO - Update id=831009995 is handled. Duration 210 ms by bot id=8165354832
+2026-01-13 23:43:01,056 - aiogram.event - INFO - Update id=831009996 is handled. Duration 91 ms by bot id=8165354832
+2026-01-13 23:43:15,506 - aiogram.event - INFO - Update id=831009997 is handled. Duration 87 ms by bot id=8165354832
+2026-01-13 23:43:18,179 - aiogram.event - INFO - Update id=831009998 is handled. Duration 84 ms by bot id=8165354832
+2026-01-13 23:47:02,479 - __main__ - ERROR - Ошибка при обмене кода на токен Google: (invalid_grant) Malformed auth code.
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 259, in command_auth_code
+    await asyncio.to_thread(flow.fetch_token, code=auth_code)
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/google_auth_oauthlib/flow.py", line 285, in fetch_token
+    return self.oauth2session.fetch_token(self.client_config["token_uri"], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/requests_oauthlib/oauth2_session.py", line 406, in fetch_token
+    self._client.parse_request_body_response(r.text, scope=self.scope)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/clients/base.py", line 426, in parse_request_body_response
+    self.token = parse_token_response(body, scope=scope)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/parameters.py", line 444, in parse_token_response
+    validate_token_parameters(params)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/parameters.py", line 451, in validate_token_parameters
+    raise_from_error(params.get('error'), params)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/errors.py", line 398, in raise_from_error
+    raise cls(**kwargs)
+oauthlib.oauth2.rfc6749.errors.InvalidGrantError: (invalid_grant) Malformed auth code.
+2026-01-13 23:47:02,561 - aiogram.event - INFO - Update id=831009999 is handled. Duration 573 ms by bot id=8165354832
+2026-01-13 23:47:11,700 - aiogram.event - INFO - Update id=831010000 is handled. Duration 80 ms by bot id=8165354832
+2026-01-13 23:48:26,827 - aiogram.event - INFO - Update id=831010001 is handled. Duration 7313 ms by bot id=8165354832
+2026-01-13 23:48:44,770 - aiogram.event - INFO - Update id=831010002 is handled. Duration 597 ms by bot id=8165354832
+2026-01-13 23:48:54,543 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:48:55,420 - aiogram.event - INFO - Update id=831010003 is handled. Duration 1226 ms by bot id=8165354832
+2026-01-13 23:49:23,783 - aiogram.event - INFO - Update id=831010004 is handled. Duration 395 ms by bot id=8165354832
+2026-01-13 23:49:29,576 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:49:29,884 - __main__ - ERROR - Ошибка входа в Skyeng для пользователя ivan.khristoforov@sinhub.ru: статус 404
+2026-01-13 23:49:30,406 - aiogram.event - INFO - Update id=831010005 is handled. Duration 898 ms by bot id=8165354832
+2026-01-13 23:49:35,681 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-13 23:49:36,733 - aiogram.event - INFO - Update id=831010006 is handled. Duration 1155 ms by bot id=8165354832
+2026-01-13 23:50:12,535 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:50:12,535 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:50:12,535 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:53:56,422 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:53:56,422 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:53:56,481 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:54:03,623 - aiogram.event - INFO - Update id=831010007 is not handled. Duration 177 ms by bot id=8165354832
+2026-01-13 23:54:03,623 - aiogram.event - ERROR - Cause exception while process update id=831010007 by bot id=8165354832
+TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "вставь_сюда_код" at byte offset 651
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 320, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 164, in feed_update
+    response = await self.update.wrap_outer_middleware(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/error.py", line 27, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/middlewares/user_context.py", line 58, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/fsm/middleware.py", line 43, in __call__
+    return await handler(event, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/dispatcher.py", line 283, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 189, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 161, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 153, in _wrapped
+    return await self._propagate_event(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/router.py", line 181, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/telegram.py", line 126, in trigger
+    return await wrapped_inner(event, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/dispatcher/event/handler.py", line 71, in call
+    return await wrapped()
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 198, in command_start_handler
+    await message.answer(text)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/methods/base.py", line 82, in emit
+    return await bot(self)
+           ^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/bot.py", line 484, in __call__
+    return await self.session(self, method, timeout=request_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 259, in __call__
+    return cast(TelegramType, await middleware(bot, method))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/aiohttp.py", line 177, in make_request
+    response = self.check_response(
+               ^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/aiogram/client/session/base.py", line 121, in check_response
+    raise TelegramBadRequest(method=method, message=description)
+aiogram.exceptions.TelegramBadRequest: Telegram server says - Bad Request: can't parse entities: Unsupported start tag "вставь_сюда_код" at byte offset 651
+2026-01-13 23:54:28,995 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-13 23:54:28,996 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:54:28,996 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-13 23:56:17,140 - __main__ - INFO - Bot is starting polling...
+2026-01-13 23:56:17,140 - aiogram.dispatcher - INFO - Start polling
+2026-01-13 23:56:17,209 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-13 23:56:29,084 - aiogram.event - INFO - Update id=831010008 is handled. Duration 237 ms by bot id=8165354832
+2026-01-13 23:56:33,371 - aiogram.event - INFO - Update id=831010009 is handled. Duration 162 ms by bot id=8165354832
+2026-01-13 23:56:41,960 - aiogram.event - INFO - Update id=831010010 is handled. Duration 105 ms by bot id=8165354832
+2026-01-13 23:57:38,962 - __main__ - ERROR - Ошибка при обмене кода на токен Google: (invalid_grant) Malformed auth code.
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 224, in command_auth_code
+    await asyncio.to_thread(flow.fetch_token, code=auth_code)
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/google_auth_oauthlib/flow.py", line 285, in fetch_token
+    return self.oauth2session.fetch_token(self.client_config["token_uri"], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/requests_oauthlib/oauth2_session.py", line 406, in fetch_token
+    self._client.parse_request_body_response(r.text, scope=self.scope)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/clients/base.py", line 426, in parse_request_body_response
+    self.token = parse_token_response(body, scope=scope)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/parameters.py", line 444, in parse_token_response
+    validate_token_parameters(params)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/parameters.py", line 451, in validate_token_parameters
+    raise_from_error(params.get('error'), params)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/errors.py", line 398, in raise_from_error
+    raise cls(**kwargs)
+oauthlib.oauth2.rfc6749.errors.InvalidGrantError: (invalid_grant) Malformed auth code.
+2026-01-13 23:57:39,121 - aiogram.event - INFO - Update id=831010011 is handled. Duration 664 ms by bot id=8165354832
+2026-01-13 23:57:51,006 - aiogram.event - INFO - Update id=831010012 is handled. Duration 86 ms by bot id=8165354832
+2026-01-13 23:59:47,081 - __main__ - ERROR - Ошибка при обмене кода на токен Google: (invalid_grant) Malformed auth code.
+Traceback (most recent call last):
+  File "/home/gaming/SingularityProject/telegram/bot.py", line 224, in command_auth_code
+    await asyncio.to_thread(flow.fetch_token, code=auth_code)
+  File "/usr/lib/python3.12/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/google_auth_oauthlib/flow.py", line 285, in fetch_token
+    return self.oauth2session.fetch_token(self.client_config["token_uri"], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/requests_oauthlib/oauth2_session.py", line 406, in fetch_token
+    self._client.parse_request_body_response(r.text, scope=self.scope)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/clients/base.py", line 426, in parse_request_body_response
+    self.token = parse_token_response(body, scope=scope)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/parameters.py", line 444, in parse_token_response
+    validate_token_parameters(params)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/parameters.py", line 451, in validate_token_parameters
+    raise_from_error(params.get('error'), params)
+  File "/home/gaming/SingularityProject/.venv/lib/python3.12/site-packages/oauthlib/oauth2/rfc6749/errors.py", line 398, in raise_from_error
+    raise cls(**kwargs)
+oauthlib.oauth2.rfc6749.errors.InvalidGrantError: (invalid_grant) Malformed auth code.
+2026-01-13 23:59:47,194 - aiogram.event - INFO - Update id=831010013 is handled. Duration 561 ms by bot id=8165354832
+2026-01-14 00:00:12,414 - aiogram.event - INFO - Update id=831010014 is handled. Duration 90 ms by bot id=8165354832
+2026-01-14 00:00:18,176 - aiogram.event - INFO - Update id=831010015 is handled. Duration 459 ms by bot id=8165354832
+2026-01-14 00:00:36,690 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:00:36,690 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:00:36,690 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:05:42,940 - __main__ - INFO - Bot is starting polling...
+2026-01-14 00:05:42,941 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:05:43,003 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:05:49,379 - aiogram.event - INFO - Update id=831010016 is handled. Duration 273 ms by bot id=8165354832
+2026-01-14 00:06:00,619 - aiogram.event - INFO - Update id=831010017 is handled. Duration 83 ms by bot id=8165354832
+2026-01-14 00:06:08,269 - __main__ - ERROR - Ошибка входа в Skyeng для пользователя ivan.khristoforov@sinhub.ru: статус 404
+2026-01-14 00:06:08,380 - aiogram.event - INFO - Update id=831010018 is handled. Duration 440 ms by bot id=8165354832
+2026-01-14 00:06:27,836 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:06:27,836 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:06:27,836 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:06:28,073 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:11:47,230 - __main__ - INFO - Bot is starting polling...
+2026-01-14 00:11:47,230 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:11:47,286 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:12:01,463 - aiogram.event - INFO - Update id=831010019 is handled. Duration 237 ms by bot id=8165354832
+2026-01-14 00:12:04,858 - __main__ - ERROR - Ошибка входа в Skyeng для пользователя ivan.khristoforov@sinhub.ru: статус 404
+2026-01-14 00:12:04,942 - aiogram.event - INFO - Update id=831010020 is handled. Duration 443 ms by bot id=8165354832
+2026-01-14 00:16:32,846 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:16:32,846 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:16:32,846 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:18:10,192 - __main__ - INFO - Bot is starting polling...
+2026-01-14 00:18:10,192 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:18:10,257 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:18:19,480 - aiogram.event - INFO - Update id=831010021 is handled. Duration 242 ms by bot id=8165354832
+2026-01-14 00:18:23,008 - __main__ - ERROR - Ошибка входа в Skyeng для пользователя ivan.khristoforov@sinhub.ru: статус 404
+2026-01-14 00:18:23,098 - aiogram.event - INFO - Update id=831010022 is handled. Duration 457 ms by bot id=8165354832
+2026-01-14 00:21:39,866 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:21:39,866 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:21:39,866 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:21:40,087 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:22:10,067 - __main__ - INFO - Bot is starting polling...
+2026-01-14 00:22:10,067 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:22:10,138 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:22:23,275 - aiogram.event - INFO - Update id=831010023 is handled. Duration 7947 ms by bot id=8165354832
+2026-01-14 00:22:34,173 - __main__ - WARNING - Логин/пароль Skyeng не найдены. Пропускаем.
+2026-01-14 00:22:34,255 - aiogram.event - INFO - Update id=831010024 is handled. Duration 149 ms by bot id=8165354832
+2026-01-14 00:23:08,667 - aiogram.event - INFO - Update id=831010025 is handled. Duration 6644 ms by bot id=8165354832
+2026-01-14 00:23:13,036 - __main__ - WARNING - Логин/пароль Skyeng не найдены. Пропускаем.
+2026-01-14 00:23:13,138 - aiogram.event - INFO - Update id=831010026 is handled. Duration 221 ms by bot id=8165354832
+2026-01-14 00:23:24,512 - aiogram.event - INFO - Update id=831010027 is handled. Duration 485 ms by bot id=8165354832
+2026-01-14 00:23:31,313 - __main__ - WARNING - Логин/пароль Skyeng не найдены. Пропускаем.
+2026-01-14 00:23:31,405 - aiogram.event - INFO - Update id=831010028 is handled. Duration 184 ms by bot id=8165354832
+2026-01-14 00:24:02,528 - aiogram.event - INFO - Update id=831010029 is handled. Duration 5774 ms by bot id=8165354832
+2026-01-14 00:24:08,172 - __main__ - WARNING - Логин/пароль Skyeng не найдены. Пропускаем.
+2026-01-14 00:24:08,260 - aiogram.event - INFO - Update id=831010030 is handled. Duration 173 ms by bot id=8165354832
+2026-01-14 00:29:28,977 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:29:28,977 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:29:28,977 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:30:27,116 - __main__ - INFO - 🚀 Бот запущен!
+2026-01-14 00:30:27,116 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:30:27,187 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:30:36,801 - aiogram.event - INFO - Update id=831010031 is handled. Duration 211 ms by bot id=8165354832
+2026-01-14 00:30:41,941 - __main__ - WARNING - Логин/пароль Skyeng не найдены.
+2026-01-14 00:30:42,031 - aiogram.event - INFO - Update id=831010032 is handled. Duration 176 ms by bot id=8165354832
+2026-01-14 00:31:52,469 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:31:52,470 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:31:52,470 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:31:54,912 - __main__ - INFO - 🚀 Бот запущен!
+2026-01-14 00:31:54,912 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:31:54,973 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:31:59,960 - __main__ - INFO - 1. Получение страницы входа: https://id.skyeng.ru/login
+2026-01-14 00:32:00,216 - __main__ - INFO - ✅ CSRF-токен найден: 9829b...
+2026-01-14 00:32:00,216 - __main__ - INFO - 2. Отправка POST запроса на вход для ivan.khristoforov@sinhub.ru
+2026-01-14 00:32:00,382 - __main__ - INFO - ✅ Успешный вход в Skyeng!
+2026-01-14 00:32:00,887 - aiogram.event - INFO - Update id=831010033 is handled. Duration 1141 ms by bot id=8165354832
+2026-01-14 00:33:49,815 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:33:49,816 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:33:49,816 - aiogram.dispatcher - INFO - Polling stopped
+2026-01-14 00:33:50,016 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:33:57,516 - __main__ - INFO - 🚀 Бот запущен!
+2026-01-14 00:33:57,517 - aiogram.dispatcher - INFO - Start polling
+2026-01-14 00:33:57,578 - aiogram.dispatcher - INFO - Run polling for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:34:04,370 - aiogram.event - INFO - Update id=831010034 is handled. Duration 216 ms by bot id=8165354832
+2026-01-14 00:34:32,426 - aiogram.event - INFO - Update id=831010035 is handled. Duration 660 ms by bot id=8165354832
+2026-01-14 00:34:36,953 - googleapiclient.discovery_cache - INFO - file_cache is only supported with oauth2client<4.0.0
+2026-01-14 00:34:37,730 - aiogram.event - INFO - Update id=831010036 is handled. Duration 1343 ms by bot id=8165354832
+2026-01-14 00:34:43,196 - aiogram.event - INFO - Update id=831010037 is handled. Duration 815 ms by bot id=8165354832
+2026-01-14 00:34:59,465 - aiogram.event - INFO - Update id=831010038 is handled. Duration 866 ms by bot id=8165354832
+2026-01-14 00:35:09,905 - aiogram.event - INFO - Update id=831010039 is handled. Duration 1086 ms by bot id=8165354832
+2026-01-14 00:41:40,060 - aiogram.dispatcher - WARNING - Received SIGINT signal
+2026-01-14 00:41:40,060 - aiogram.dispatcher - INFO - Polling stopped for bot @SingularitySmartScheduler_bot id=8165354832 - 'SingularitySmartScheduler'
+2026-01-14 00:41:40,061 - aiogram.dispatcher - INFO - Polling stopped

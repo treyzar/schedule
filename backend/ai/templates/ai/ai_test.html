@@ -1,0 +1,244 @@
+<!-- ai/templates/ai/ai_test.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тестирование AI Модуля (WebSocket)</title>
+    <style>
+        /* --- Общие стили --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            max-width: 900px;
+            margin: 2em auto;
+            padding: 1em;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2em;
+        }
+        h2 {
+            font-size: 22px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-top: 0;
+            color: #1c1e21;
+        }
+        button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0b5ed7;
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        pre {
+            background-color: #e9f5ff;
+            padding: 15px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        /* --- Стили для чата --- */
+        #chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-message {
+            padding: 9px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #0d6efd;
+            color: white;
+            align-self: flex-end;
+        }
+        .ai-message {
+            background-color: #e9e9eb;
+            color: black;
+            align-self: flex-start;
+        }
+        #chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+        #chat-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        #connection-status {
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>💬 Тест общего чата (WebSocket)</h2>
+        <div id="connection-status">Подключение к WebSocket серверу...</div>
+        <div id="chat-container">
+            <div id="chat-messages">
+                <!-- Сообщения будут добавляться сюда динамически -->
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Введите ваше сообщение..." disabled>
+                <button id="send-button" onclick="sendChatMessage()" disabled>Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>🤖 Тест "Умного планировщика" (Обычный HTTP)</h2>
+        <p>Эта кнопка отправит стандартный HTTP-запрос и будет ждать полного ответа. Используйте ее для сравнения.</p>
+        <button onclick="getSmartPlan()" id="smart-plan-button">Сгенерировать тестовый план</button>
+        <pre id="smart-plan-result">Здесь появится ответ от планировщика...</pre>
+    </div>
+
+    <script>
+        // --- Получаем ссылки на DOM-элементы ---
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+        const chatMessages = document.getElementById('chat-messages');
+        const connectionStatus = document.getElementById('connection-status');
+
+        // --- 1. Устанавливаем WebSocket соединение ---
+        // URL формируется динамически, чтобы работать на любом хосте
+        const chatSocket = new WebSocket(
+            'ws://' + window.location.host + '/ws/chat/'
+        );
+
+        // --- 2. Обработчики событий WebSocket ---
+
+        // Событие: Соединение успешно открыто
+        chatSocket.onopen = function(e) {
+            console.log('WebSocket connection opened!');
+            connectionStatus.textContent = 'Соединение установлено.';
+            connectionStatus.style.color = 'green';
+            chatInput.disabled = false;
+            sendButton.disabled = false;
+            addMessageToChat('Привет! Я готов к работе через WebSocket.', 'ai');
+        };
+
+        // Событие: От сервера пришло сообщение (токен)
+        chatSocket.onmessage = function(e) {
+            const data = e.data;
+            const lastAiMessage = document.querySelector('.ai-message:last-child');
+
+            if (lastAiMessage) {
+                // Если сервер прислал ошибку, отображаем ее
+                if (data.startsWith('[ERROR:')) {
+                    lastAiMessage.style.color = 'red';
+                    lastAiMessage.textContent = data;
+                } else {
+                    // Добавляем полученный токен в "пузырь" ответа
+                    lastAiMessage.textContent += data;
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Автопрокрутка вниз
+                }
+            }
+        };
+
+        // Событие: Соединение было закрыто
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly. Code:', e.code, 'Reason:', e.reason);
+            connectionStatus.textContent = 'Соединение потеряно. Пожалуйста, обновите страницу.';
+            connectionStatus.style.color = 'red';
+            chatInput.disabled = true;
+            sendButton.disabled = true;
+        };
+
+        // --- 3. Функции для взаимодействия с интерфейсом чата ---
+
+        // Функция для добавления "пузыря" сообщения в DOM
+        function addMessageToChat(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chat-message', sender + '-message');
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Функция для отправки сообщения на сервер
+        function sendChatMessage() {
+            const messageText = chatInput.value.trim();
+            if (!messageText || chatSocket.readyState !== WebSocket.OPEN) return;
+
+            addMessageToChat(messageText, 'user');
+            addMessageToChat("", 'ai'); // Сразу создаем пустой "пузырь" для ответа
+
+            // Отправляем данные на сервер через WebSocket в формате JSON
+            chatSocket.send(JSON.stringify({
+                'message': messageText
+            }));
+
+            chatInput.value = '';
+            chatInput.focus();
+        }
+
+        // Добавляем слушатель для отправки по нажатию Enter
+        chatInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendChatMessage();
+            }
+        });
+
+        // --- Старая функция для планировщика (остается для теста) ---
+        async function getSmartPlan() {
+            const resultDiv = document.getElementById('smart-plan-result');
+            const button = document.getElementById('smart-plan-button');
+            resultDiv.textContent = "🧠 Генерация плана... Пожалуйста, подождите.";
+            button.disabled = true;
+
+            try {
+                const response = await fetch("{% url 'ai_smart_plan' %}", {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                resultDiv.textContent = response.ok ? data.plan : `Ошибка: ${data.error}`;
+            } catch (error) {
+                resultDiv.textContent = `Критическая сетевая ошибка: ${error.message}`;
+            } finally {
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

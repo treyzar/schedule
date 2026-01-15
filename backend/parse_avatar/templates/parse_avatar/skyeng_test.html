@@ -1,0 +1,105 @@
+<!-- parse_avatar/templates/parse_avatar/skyeng_test.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест Skyeng API</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; max-width: 800px; margin: auto; }
+        .form-container, .result-container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        input { display: block; width: calc(100% - 20px); padding: 8px; margin-bottom: 10px; }
+        button { background-color: #1A73E8; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+        pre { background-color: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
+        #error-message { color: red; }
+    </style>
+</head>
+<body>
+
+    <h1>Тестирование Skyeng Avatar API в Django</h1>
+
+    <div class="form-container">
+        <h3>Форма входа</h3>
+        <input type="text" id="username" placeholder="Логин (username)">
+        <input type="password" id="password" placeholder="Пароль">
+        <button onclick="loginSkyeng()">Войти</button>
+        <p id="login-status"></p>
+    </div>
+
+    <div class="result-container">
+        <h3>Данные по предмету 'Physics'</h3>
+        <button onclick="fetchSubjectData()">Получить данные</button>
+        <p id="error-message"></p>
+        <pre id="subject-data-result">Здесь появятся данные после успешного входа и запроса...</pre>
+    </div>
+
+
+    <script>
+        const loginStatus = document.getElementById('login-status');
+        const subjectResult = document.getElementById('subject-data-result');
+        const errorMessage = document.getElementById('error-message');
+
+        // Функция для входа в Skyeng
+        async function loginSkyeng() {
+            loginStatus.textContent = 'Выполняется вход...';
+            errorMessage.textContent = '';
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch("{% url 'skyeng_login' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Django CSRF-токен для защиты POST-запросов
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ username: username, password: password }),
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    loginStatus.style.color = 'green';
+                    loginStatus.textContent = `Успешный вход! Статус: ${data.status}. Теперь можно получить данные.`;
+                } else {
+                    loginStatus.style.color = 'red';
+                    loginStatus.textContent = `Ошибка входа: ${data.message || 'Неизвестная ошибка'}`;
+                }
+            } catch (error) {
+                loginStatus.style.color = 'red';
+                loginStatus.textContent = `Сетевая ошибка: ${error.message}`;
+            }
+        }
+
+        // Функция для получения данных по предмету
+        async function fetchSubjectData() {
+            subjectResult.textContent = 'Получение данных...';
+            errorMessage.textContent = '';
+
+            try {
+                const response = await fetch("{% url 'skyeng_subject_data' %}", {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Красиво форматируем JSON для отображения
+                    subjectResult.textContent = JSON.stringify(data, null, 2);
+                } else {
+                     errorMessage.textContent = `Ошибка получения данных: ${data.error || 'Неизвестная ошибка'}`;
+                     subjectResult.textContent = '';
+                }
+
+            } catch (error) {
+                errorMessage.textContent = `Сетевая ошибка: ${error.message}`;
+                subjectResult.textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>
