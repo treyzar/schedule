@@ -36,7 +36,6 @@ export default function WeeklyScheduleOverviewPage() {
             </p>
           </div>
 
-          <TabNavigation />
 
           <div className="mt-6">
             <WeeklyScheduleInteractive />

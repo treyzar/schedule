@@ -6,6 +6,7 @@ import WeeklyStats from './WeeklyStats';
 import WeeklyGrid from './WeeklyGrid';
 import EventDetailsModal from './EventDetailsModal';
 import FilterPanel from './FilterPanel';
+import EventCreatorModal from '@/components/ui/EventCreatorModal';
 
 // Интерфейсы и константы
 interface Event {
@@ -72,6 +73,13 @@ const WeeklyScheduleInteractive = () => {
     priorities: [] as string[],
   });
   const [needsRefresh, setNeedsRefresh] = useState(0);
+
+  // Состояния для модального окна создания события
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [createModalInitialData, setCreateModalInitialData] = useState<{
+    start_datetime?: string;
+    end_datetime?: string;
+  }>({});
 
   // Сохраняем дату в sessionStorage при каждом ее изменении
   useEffect(() => {
@@ -231,6 +239,26 @@ const WeeklyScheduleInteractive = () => {
     [events]
   );
 
+  const handleTimeSlotClick = useCallback((day: number, hour: number) => {
+    // Вычисляем дату для выбранного дня недели и часа
+    const startOfWeek = new Date(currentWeek);
+    const dayOfWeek = currentWeek.getDay();
+    startOfWeek.setDate(currentWeek.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1));
+    
+    const selectedDate = new Date(startOfWeek);
+    selectedDate.setDate(startOfWeek.getDate() + day);
+    selectedDate.setHours(hour, 0, 0, 0);
+    
+    const endDate = new Date(selectedDate);
+    endDate.setHours(hour + 1, 0, 0, 0);
+
+    setCreateModalInitialData({
+      start_datetime: selectedDate.toISOString(),
+      end_datetime: endDate.toISOString(),
+    });
+    setIsCreateModalOpen(true);
+  }, [currentWeek]);
+
   const filteredEvents = useMemo(
     () =>
       events.filter(
@@ -295,12 +323,27 @@ const WeeklyScheduleInteractive = () => {
         currentWeek={currentWeek}
         onEventClick={setSelectedEvent}
         onEventDrop={handleEventDrop}
+        onTimeSlotClick={handleTimeSlotClick}
       />
       <EventDetailsModal
         event={selectedEvent}
         onClose={() => setSelectedEvent(null)}
         onEdit={handleEventEdit}
         onDelete={handleEventDelete}
+      />
+
+      {/* Модальное окно создания нового события */}
+      <EventCreatorModal
+        isOpen={isCreateModalOpen}
+        onClose={() => {
+          setIsCreateModalOpen(false);
+          setCreateModalInitialData({});
+        }}
+        initialData={createModalInitialData}
+        onSuccess={(event) => {
+          // Перезагружаем страницу для обновления событий
+          window.location.reload();
+        }}
       />
     </div>
   );

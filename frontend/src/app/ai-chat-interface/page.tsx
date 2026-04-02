@@ -28,10 +28,6 @@ export default function AIChatInterfacePage() {
               </div>
             </div>
 
-            <div className="mb-6">
-              <TabNavigation />
-            </div>
-
             <div
               className="bg-card rounded-lg shadow-elevation-md border border-border overflow-hidden"
               style={{ height: 'calc(100vh - 280px)' }}

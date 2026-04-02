@@ -27,9 +27,6 @@ export default function MonthlyCalendarPage() {
             </div>
           </div>
 
-          <div className="mb-6">
-            <TabNavigation />
-          </div>
 
           <MonthlyCalendarInteractive />
         </div>

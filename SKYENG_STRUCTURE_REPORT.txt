@@ -1,0 +1,1395 @@
+--- Профориентация ---
+URL: https://edu-avatar.skyeng.ru/api/v1/college-student-cabinet/single-student-account/profession?subjectEnum=career_guidance
+Structure:
+{
+  "programId": <int> (e.g. 1040),
+  "userId": <int> (e.g. 42387401),
+  "programTitle": <str> (e.g. IT-навигатор),
+  "stream": {
+    "streamName": <str> (e.g. IT-навигатор (колледж)),
+    "curatorFullName": <NoneType> (e.g. None),
+    "streamUrl": <str> (e.g. https://my.sky.pro/student-cab...),
+  },
+  "modules": [
+    {
+      "moduleTitle": <str> (e.g. Вводное слово),
+      "moduleId": <int> (e.g. 31991),
+      "firstEventDate": <str> (e.g. 2025-09-14T21:00:30+00:00),
+      "finalWork": <NoneType> (e.g. None),
+      "lessons": [
+        {
+          "streamLessonTitle": <str> (e.g. О программе),
+          "streamLessonLink": <str> (e.g. https://my.sky.pro/student-cab...),
+          "startAt": <str> (e.g. 2025-09-14T21:00:30+00:00),
+          "deadline": <str> (e.g. 2025-09-15T21:00:30+00:00),
+          "completeness": <int> (e.g. 100),
+          "score": <int> (e.g. 100),
+          "lessonType": <str> (e.g. Regular),
+          "homework": {
+            "has": <bool> (e.g. False),
+            "homeworkDeadline": <str> (e.g. 2025-09-15T21:00:30+00:00),
+            "homeWorkUrl": <NoneType> (e.g. None),
+            "isHomeworkCompleted": <NoneType> (e.g. None),
+            "homeworkRate": <NoneType> (e.g. None),
+            "lastTicketMark": <NoneType> (e.g. None),
+            "comment": <NoneType> (e.g. None),
+            "status": <str> (e.g. new),
+          },
+        },
+      ],
+      "lives": <list> (e.g. []),
+      "isComplete": <bool> (e.g. True),
+    },
+  ],
+  "metrics": {
+    "lessonMetric": {
+      "totalComplete": <int> (e.g. 31),
+      "total": <int> (e.g. 31),
+      "avgComplete": <int> (e.g. 100),
+    },
+    "homeworkMetric": {
+      "totalComplete": <int> (e.g. 15),
+      "total": <int> (e.g. 15),
+      "avgScore": <float> (e.g. 4.9),
+    },
+    "courseWorkMetric": {
+      "totalComplete": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "avgScore": <NoneType> (e.g. None),
+    },
+  },
+  "callToAction": {
+    "link": <NoneType> (e.g. None),
+    "type": <NoneType> (e.g. None),
+    "date": <str> (e.g. 2026-04-01T20:52:14+00:00),
+  },
+},
+
+==================================================
+
+--- Python ---
+URL: https://edu-avatar.skyeng.ru/api/v1/college-student-cabinet/single-student-account/python?subjectEnum=python
+Structure:
+{
+  "testMetric": <NoneType> (e.g. None),
+  "trainerExternalId": <str> (e.g. ),
+  "scheduleData": {
+    "programId": <int> (e.g. 1041),
+    "userId": <int> (e.g. 42387401),
+    "programTitle": <str> (e.g. Программирование на Python),
+    "stream": {
+      "streamName": <str> (e.g. Программирование на Python (ко...),
+      "curatorFullName": <NoneType> (e.g. None),
+      "streamUrl": <str> (e.g. https://my.sky.pro/student-cab...),
+    },
+    "modules": [
+      {
+        "moduleTitle": <str> (e.g. Изучаем программирование в Cod...),
+        "moduleId": <int> (e.g. 30969),
+        "firstEventDate": <str> (e.g. 2025-09-14T21:00:30+00:00),
+        "finalWork": <NoneType> (e.g. None),
+        "lessons": [
+          {
+            "streamLessonTitle": <str> (e.g. Изучаем Python),
+            "streamLessonLink": <str> (e.g. https://my.sky.pro/student-cab...),
+            "startAt": <str> (e.g. 2025-09-14T21:00:30+00:00),
+            "deadline": <str> (e.g. 2025-09-23T21:00:30+00:00),
+            "completeness": <int> (e.g. 100),
+            "score": <int> (e.g. 100),
+            "lessonType": <str> (e.g. Regular),
+            "homework": {
+              "has": <bool> (e.g. False),
+              "homeworkDeadline": <str> (e.g. 2025-09-23T21:00:30+00:00),
+              "homeWorkUrl": <NoneType> (e.g. None),
+              "isHomeworkCompleted": <NoneType> (e.g. None),
+              "homeworkRate": <NoneType> (e.g. None),
+              "lastTicketMark": <NoneType> (e.g. None),
+              "comment": <NoneType> (e.g. None),
+              "status": <str> (e.g. new),
+            },
+          },
+        ],
+        "lives": <list> (e.g. []),
+        "isComplete": <bool> (e.g. True),
+      },
+    ],
+    "metrics": {
+      "lessonMetric": {
+        "totalComplete": <int> (e.g. 18),
+        "total": <int> (e.g. 18),
+        "avgComplete": <int> (e.g. 100),
+      },
+      "homeworkMetric": {
+        "totalComplete": <int> (e.g. 6),
+        "total": <int> (e.g. 6),
+        "avgScore": <int> (e.g. 5),
+      },
+      "courseWorkMetric": {
+        "totalComplete": <int> (e.g. 0),
+        "total": <int> (e.g. 0),
+        "avgScore": <NoneType> (e.g. None),
+      },
+    },
+    "callToAction": {
+      "link": <NoneType> (e.g. None),
+      "type": <NoneType> (e.g. None),
+      "date": <str> (e.g. 2026-04-01T20:52:15+00:00),
+    },
+  },
+},
+
+==================================================
+
+--- Soft-skill ---
+URL: https://edu-avatar.skyeng.ru/api/v1/college-student-cabinet/single-student-account/profession?subjectEnum=soft_skills
+Structure:
+{
+  "programId": <int> (e.g. 1048),
+  "userId": <int> (e.g. 42387401),
+  "programTitle": <str> (e.g. Soft skills 1 (колледж)),
+  "stream": {
+    "streamName": <str> (e.g. Soft skills 1 семестр'25-26),
+    "curatorFullName": <NoneType> (e.g. None),
+    "streamUrl": <str> (e.g. https://my.sky.pro/student-cab...),
+  },
+  "modules": [
+    {
+      "moduleTitle": <str> (e.g. Организационные навыки),
+      "moduleId": <int> (e.g. 33640),
+      "firstEventDate": <str> (e.g. 2025-09-14T21:00:30+00:00),
+      "finalWork": <NoneType> (e.g. None),
+      "lessons": [
+        {
+          "streamLessonTitle": <str> (e.g. Тайм-менеджмент),
+          "streamLessonLink": <str> (e.g. https://my.sky.pro/student-cab...),
+          "startAt": <str> (e.g. 2025-09-14T21:00:30+00:00),
+          "deadline": <str> (e.g. 2025-09-21T21:00:30+00:00),
+          "completeness": <int> (e.g. 100),
+          "score": <int> (e.g. 95),
+          "lessonType": <str> (e.g. Regular),
+          "homework": {
+            "has": <bool> (e.g. True),
+            "homeworkDeadline": <str> (e.g. 2025-09-21T21:00:30+00:00),
+            "homeWorkUrl": <str> (e.g. https://my.sky.pro/student-cab...),
+            "isHomeworkCompleted": <bool> (e.g. True),
+            "homeworkRate": <NoneType> (e.g. None),
+            "lastTicketMark": <int> (e.g. 5),
+            "comment": <NoneType> (e.g. None),
+            "status": <str> (e.g. closed),
+          },
+        },
+      ],
+      "lives": <list> (e.g. []),
+      "isComplete": <bool> (e.g. True),
+    },
+  ],
+  "metrics": {
+    "lessonMetric": {
+      "totalComplete": <int> (e.g. 18),
+      "total": <int> (e.g. 18),
+      "avgComplete": <int> (e.g. 100),
+    },
+    "homeworkMetric": {
+      "totalComplete": <int> (e.g. 17),
+      "total": <int> (e.g. 18),
+      "avgScore": <float> (e.g. 4.7),
+    },
+    "courseWorkMetric": {
+      "totalComplete": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "avgScore": <NoneType> (e.g. None),
+    },
+  },
+  "callToAction": {
+    "link": <str> (e.g. https://my.sky.pro/student-cab...),
+    "type": <str> (e.g. homework),
+    "date": <str> (e.g. 2026-03-29T21:00:00+00:00),
+  },
+},
+
+==================================================
+
+--- English ---
+URL: https://edu-avatar.skyeng.ru/api/v3/college-student-cabinet/single-student-account/english
+Structure:
+{
+  "metrics": {
+    "aiTeacherLessons": {
+      "current": <int> (e.g. 13),
+      "total": <int> (e.g. 16),
+      "rating": {
+        "value": <float> (e.g. 4.5),
+        "color": <str> (e.g. green),
+      },
+    },
+    "tests": {
+      "current": <int> (e.g. 1),
+      "total": <int> (e.g. 1),
+      "rating": {
+        "value": <float> (e.g. 4.0),
+        "color": <str> (e.g. green),
+      },
+    },
+    "drilling": {
+      "current": <int> (e.g. 3),
+      "total": <int> (e.g. 64),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. yellow),
+      },
+    },
+    "cefr": {
+      "current": <str> (e.g. Pre-Intermediate),
+      "goal": {
+        "value": <str> (e.g. B1),
+        "color": <str> (e.g. green),
+      },
+    },
+    "stt": {
+      "current": <int> (e.g. 125),
+      "total": <int> (e.g. 240),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. yellow),
+      },
+    },
+    "sr": {
+      "current": <int> (e.g. 4),
+      "total": <int> (e.g. 59),
+      "rating": {
+        "value": <int> (e.g. 0),
+        "color": <str> (e.g. yellow),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": [
+      {
+        "title": <str> (e.g. Unit 3. Living in a Changing W...),
+        "lessons": [
+          {
+            "availableFrom": <str> (e.g. 2026-01-18T21:01:00Z),
+            "deadlineAt": <str> (e.g. 2026-01-24T21:01:00Z),
+            "completedAt": <str> (e.g. 2026-01-22T19:26:20+00:00),
+            "status": <str> (e.g. completed),
+            "score": <float> (e.g. 5.0),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": <NoneType> (e.g. None),
+            "joinedAt": <str> (e.g. 2026-01-22T19:26:18Z),
+            "closedAt": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "attempts": <NoneType> (e.g. None),
+            "passed": <bool> (e.g. False),
+            "subject": <str> (e.g. english),
+            "studentScheduleId": <NoneType> (e.g. None),
+            "taskId": <int> (e.g. 3037),
+            "streamTaskId": <int> (e.g. 6079),
+            "type": <str> (e.g. lesson),
+            "title": <str> (e.g. To rent or to buy?),
+          },
+        ],
+      },
+    ],
+    "open": [
+      {
+        "title": <str> (e.g. Unit 4. The Way We Live Now),
+        "lessons": [
+          {
+            "availableFrom": <str> (e.g. 2026-03-08T21:01:00Z),
+            "deadlineAt": <str> (e.g. 2026-03-14T21:01:00Z),
+            "completedAt": <str> (e.g. 2026-03-25T13:54:41+00:00),
+            "status": <str> (e.g. completed),
+            "score": <float> (e.g. 5.0),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <str> (e.g. https://ai-tutor.skyeng.ru/les...),
+            "recordUrl": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": <NoneType> (e.g. None),
+            "joinedAt": <str> (e.g. 2026-03-25T13:54:38Z),
+            "closedAt": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "attempts": <NoneType> (e.g. None),
+            "passed": <bool> (e.g. False),
+            "subject": <str> (e.g. english),
+            "studentScheduleId": <NoneType> (e.g. None),
+            "taskId": <int> (e.g. 3048),
+            "streamTaskId": <int> (e.g. 6090),
+            "type": <str> (e.g. lesson),
+            "title": <str> (e.g. New life in a village),
+          },
+        ],
+      },
+    ],
+  },
+  "rolePlayId": <NoneType> (e.g. None),
+  "nextLesson": {
+    "availableFrom": <str> (e.g. 2026-03-22T21:01:00Z),
+    "deadlineAt": <str> (e.g. 2026-03-28T21:01:00Z),
+    "completedAt": <NoneType> (e.g. None),
+    "status": <str> (e.g. overdue),
+    "score": <NoneType> (e.g. None),
+    "teacherName": <NoneType> (e.g. None),
+    "taskUrl": <NoneType> (e.g. None),
+    "recordUrl": <NoneType> (e.g. None),
+    "completeness": <NoneType> (e.g. None),
+    "homework": <NoneType> (e.g. None),
+    "joinedAt": <NoneType> (e.g. None),
+    "closedAt": <NoneType> (e.g. None),
+    "disabled": <bool> (e.g. False),
+    "canRedo": <bool> (e.g. False),
+    "attempts": <NoneType> (e.g. None),
+    "passed": <bool> (e.g. False),
+    "subject": <str> (e.g. english),
+    "studentScheduleId": <NoneType> (e.g. None),
+    "taskId": <int> (e.g. 3052),
+    "streamTaskId": <int> (e.g. 6094),
+    "type": <str> (e.g. lesson),
+    "title": <str> (e.g. Food delivery),
+  },
+  "activeTest": <NoneType> (e.g. None),
+  "chart": {
+    "currentSemester": {
+      "levelOfSpeechFluency": <str> (e.g. C1),
+      "clarityLevel": <str> (e.g. B2),
+      "pronunciationLevel": <str> (e.g. B1),
+      "fluencyLevel": <str> (e.g. B1),
+      "vocabularyLevel": <str> (e.g. B2),
+      "grammarLevel": <str> (e.g. B2),
+    },
+    "currentSemesterWithoutLastLesson": {
+      "levelOfSpeechFluency": <str> (e.g. B2),
+      "clarityLevel": <str> (e.g. B2),
+      "pronunciationLevel": <str> (e.g. B1),
+      "fluencyLevel": <str> (e.g. B1),
+      "vocabularyLevel": <str> (e.g. B2),
+      "grammarLevel": <str> (e.g. B2),
+    },
+    "previousSemester": {
+      "levelOfSpeechFluency": <str> (e.g. B2),
+      "clarityLevel": <str> (e.g. B1),
+      "pronunciationLevel": <str> (e.g. B1),
+      "fluencyLevel": <str> (e.g. A2),
+      "vocabularyLevel": <str> (e.g. B1),
+      "grammarLevel": <str> (e.g. A2),
+    },
+  },
+},
+
+==================================================
+
+--- Математика ---
+URL: https://edu-avatar.skyeng.ru/api/v1/college-student-cabinet/single-student-account/math
+Structure:
+{
+  "lastGrades": [
+    <int>,
+  ],
+  "journal": [
+    {
+      "startedAt": <str> (e.g. 2026-01-23),
+      "startedAtDate": <str> (e.g. 23.01),
+      "originalTitle": <str> (e.g. Тест. Линейные и квадратные ур...),
+      "originalGrade": <int> (e.g. 4),
+      "originalIsConfirmedAbsence": <bool> (e.g. False),
+      "retakes": [
+        {
+          "retakeGrade": <int> (e.g. 2),
+          "retakeIsConfirmedAbsence": <bool> (e.g. True),
+          "retakeDate": <str> (e.g. 2026-03-02 07:00),
+        },
+      ],
+      "totalGrade": <int> (e.g. 4),
+      "courseScoreInfluence": <str> (e.g. yes),
+    },
+  ],
+  "journalStats": {
+    "testsInTheFutureCount": <int> (e.g. 7),
+    "retakesInTheFutureCount": <int> (e.g. 10),
+    "totalCompletedTestsCount": <int> (e.g. 9),
+    "pastTestsCount": <int> (e.g. 9),
+  },
+  "examsPrepare": {
+    "pass": {
+      "status": <str> (e.g. yes),
+      "needTotalToSave": <int> (e.g. 0),
+      "availableTests": <int> (e.g. 7),
+      "availableRetakes": <int> (e.g. 0),
+      "availableChances": <int> (e.g. 7),
+    },
+    "3": {
+      "status": <str> (e.g. canLose),
+      "needTotalToSave": <int> (e.g. 5),
+      "availableTests": <int> (e.g. 7),
+      "availableRetakes": <int> (e.g. 0),
+      "availableChances": <int> (e.g. 7),
+    },
+    "4": {
+      "status": <str> (e.g. canLose),
+      "needTotalToSave": <int> (e.g. 6),
+      "availableTests": <int> (e.g. 7),
+      "availableRetakes": <int> (e.g. 1),
+      "availableChances": <int> (e.g. 8),
+    },
+    "5": {
+      "status": <str> (e.g. no),
+      "needTotalToSave": <int> (e.g. 10),
+      "availableTests": <int> (e.g. 7),
+      "availableRetakes": <int> (e.g. 2),
+      "availableChances": <int> (e.g. 9),
+    },
+  },
+  "examsPrepareCurrentState": {
+    "status": <str> (e.g. 4),
+  },
+  "eventDays": [
+    {
+      "date": <str> (e.g. 2026-01-23),
+      "isPast": <bool> (e.g. True),
+      "isToday": <bool> (e.g. False),
+      "isCurrentWeek": <bool> (e.g. False),
+      "isNextWeek": <bool> (e.g. False),
+      "isFarFuture": <bool> (e.g. False),
+      "isPinned": <bool> (e.g. False),
+      "events": [
+        {
+          "id": <str> (e.g. 1f0f05c9-19c5-6efc-b81a-397495...),
+          "title": <str> (e.g. Тест. Линейные и квадратные ур...),
+          "createdAt": <str> (e.g. 2026-01-13 08:48:01),
+          "startedAt": <str> (e.g. 2026-01-23 10:30),
+          "startedAtTime": <str> (e.g. 10:30),
+          "finishedAt": <str> (e.g. 2026-01-23 11:30),
+          "status": <str> (e.g. finished),
+          "place": <str> (e.g. online),
+          "isConfirmedAbsence": <bool> (e.g. False),
+          "scoreStrategy": <str> (e.g. 5_score),
+          "scoreIsSuccess": <bool> (e.g. True),
+          "gradeCalculated": <int> (e.g. 4),
+          "gradeProbabilities": {
+            "3": <float> (e.g. 4.0),
+            "4": <float> (e.g. 0.0),
+            "5": <float> (e.g. 0.0),
+            "pass": <float> (e.g. 4.0),
+          },
+          "preparationPercent": <float> (e.g. 47.5),
+          "availableFrom": <str> (e.g. ),
+          "availableTill": <str> (e.g. ),
+          "duration": <NoneType> (e.g. None),
+          "timeStrategy": <str> (e.g. fixed),
+          "resultsCalculationStrategy": <str> (e.g. end),
+          "preparationStrategy": <str> (e.g. themes),
+          "preparationTimeEstimatedMinutesTotal": <int> (e.g. 180),
+          "related": <NoneType> (e.g. None),
+          "isRetake": <bool> (e.g. False),
+          "presenceDecisionStatus": <int> (e.g. 1),
+          "courseVisibility": <str> (e.g. normal),
+          "courseScoreInfluence": <str> (e.g. yes),
+          "demoOfTestId": <NoneType> (e.g. None),
+          "themeIds": [
+            <str>,
+          ],
+          "retake": {
+            "gradeCalculated": <int> (e.g. 2),
+            "isConfirmedAbsence": <bool> (e.g. True),
+            "startedAt": <str> (e.g. 2026-03-02 07:00),
+            "status": <str> (e.g. finished),
+          },
+          "preparationTimeInHoursTotal": <NoneType> (e.g. None),
+          "preparationTimeEstimatedInHoursTotal": <NoneType> (e.g. None),
+        },
+      ],
+      "isRetakeDay": <bool> (e.g. False),
+      "isImportantDay": <bool> (e.g. False),
+      "isClosestFutureDay": <bool> (e.g. False),
+    },
+  ],
+  "metrics": {
+    "exam": {
+      "level": <str> (e.g. green),
+      "progress": <int> (e.g. 75),
+    },
+    "score": {
+      "level": <str> (e.g. green),
+      "progress": <float> (e.g. 56.0),
+    },
+  },
+},
+
+==================================================
+
+--- Менеджмент проектов ---
+URL: https://edu-avatar.skyeng.ru/api/v1/college-student-cabinet/single-student-account/profession?subjectEnum=managment_of_project
+Structure:
+{
+  "programId": <int> (e.g. 1042),
+  "userId": <int> (e.g. 42387401),
+  "programTitle": <str> (e.g. Проектный менеджмент),
+  "stream": {
+    "streamName": <str> (e.g. Проектный менеджмент (колледж)),
+    "curatorFullName": <NoneType> (e.g. None),
+    "streamUrl": <str> (e.g. https://my.sky.pro/student-cab...),
+  },
+  "modules": [
+    {
+      "moduleTitle": <str> (e.g. Введение в предмет),
+      "moduleId": <int> (e.g. 29139),
+      "firstEventDate": <str> (e.g. 2025-09-14T21:00:30+00:00),
+      "finalWork": <NoneType> (e.g. None),
+      "lessons": [
+        {
+          "streamLessonTitle": <str> (e.g. Введение в управление проектам...),
+          "streamLessonLink": <str> (e.g. https://my.sky.pro/student-cab...),
+          "startAt": <str> (e.g. 2025-09-14T21:00:30+00:00),
+          "deadline": <str> (e.g. 2025-09-19T21:00:30+00:00),
+          "completeness": <int> (e.g. 100),
+          "score": <int> (e.g. 100),
+          "lessonType": <str> (e.g. Regular),
+          "homework": {
+            "has": <bool> (e.g. False),
+            "homeworkDeadline": <str> (e.g. 2025-09-19T21:00:30+00:00),
+            "homeWorkUrl": <NoneType> (e.g. None),
+            "isHomeworkCompleted": <NoneType> (e.g. None),
+            "homeworkRate": <NoneType> (e.g. None),
+            "lastTicketMark": <NoneType> (e.g. None),
+            "comment": <NoneType> (e.g. None),
+            "status": <str> (e.g. new),
+          },
+        },
+      ],
+      "lives": <list> (e.g. []),
+      "isComplete": <bool> (e.g. True),
+    },
+  ],
+  "metrics": {
+    "lessonMetric": {
+      "totalComplete": <int> (e.g. 16),
+      "total": <int> (e.g. 16),
+      "avgComplete": <int> (e.g. 100),
+    },
+    "homeworkMetric": {
+      "totalComplete": <int> (e.g. 3),
+      "total": <int> (e.g. 3),
+      "avgScore": <float> (e.g. 4.7),
+    },
+    "courseWorkMetric": {
+      "totalComplete": <int> (e.g. 1),
+      "total": <int> (e.g. 1),
+      "avgScore": <int> (e.g. 5),
+    },
+  },
+  "callToAction": {
+    "link": <NoneType> (e.g. None),
+    "type": <NoneType> (e.g. None),
+    "date": <str> (e.g. 2026-04-01T20:52:18+00:00),
+  },
+},
+
+==================================================
+
+--- Курс Сингулярности ---
+URL: https://edu-avatar.skyeng.ru/api/v1/college-student-cabinet/single-student-account/profession?subjectEnum=lessons_about_main
+Structure:
+{
+  "programId": <int> (e.g. 1125),
+  "userId": <int> (e.g. 42387401),
+  "programTitle": <str> (e.g. Курс сингулярности),
+  "stream": {
+    "streamName": <str> (e.g. Курс сингулярности. 1 семестр),
+    "curatorFullName": <NoneType> (e.g. None),
+    "streamUrl": <str> (e.g. https://my.sky.pro/student-cab...),
+  },
+  "modules": [
+    {
+      "moduleTitle": <str> (e.g. Видео 1 семестра),
+      "moduleId": <int> (e.g. 34304),
+      "firstEventDate": <str> (e.g. 2025-10-13T07:50:00+00:00),
+      "finalWork": <NoneType> (e.g. None),
+      "lessons": [
+        {
+          "streamLessonTitle": <str> (e.g. 8-12 сентября. Мотивационные в...),
+          "streamLessonLink": <str> (e.g. https://my.sky.pro/student-cab...),
+          "startAt": <str> (e.g. 2025-10-13T07:50:00+00:00),
+          "deadline": <str> (e.g. 2025-10-20T07:50:00+00:00),
+          "completeness": <int> (e.g. 100),
+          "score": <int> (e.g. 100),
+          "lessonType": <str> (e.g. Regular),
+          "homework": {
+            "has": <bool> (e.g. False),
+            "homeworkDeadline": <str> (e.g. 2025-10-20T07:50:00+00:00),
+            "homeWorkUrl": <NoneType> (e.g. None),
+            "isHomeworkCompleted": <NoneType> (e.g. None),
+            "homeworkRate": <NoneType> (e.g. None),
+            "lastTicketMark": <NoneType> (e.g. None),
+            "comment": <NoneType> (e.g. None),
+            "status": <str> (e.g. new),
+          },
+        },
+      ],
+      "lives": <list> (e.g. []),
+      "isComplete": <bool> (e.g. True),
+    },
+  ],
+  "metrics": {
+    "lessonMetric": {
+      "totalComplete": <int> (e.g. 32),
+      "total": <int> (e.g. 32),
+      "avgComplete": <int> (e.g. 100),
+    },
+    "homeworkMetric": {
+      "totalComplete": <int> (e.g. 1),
+      "total": <int> (e.g. 1),
+      "avgScore": <int> (e.g. 4),
+    },
+    "courseWorkMetric": {
+      "totalComplete": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "avgScore": <NoneType> (e.g. None),
+    },
+  },
+  "callToAction": {
+    "link": <NoneType> (e.g. None),
+    "type": <NoneType> (e.g. None),
+    "date": <str> (e.g. 2026-04-01T20:52:19+00:00),
+  },
+},
+
+==================================================
+
+--- Биология ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=biology
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад - Биология 25/26),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-Биология-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 24),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 20),
+      "total": <int> (e.g. 20),
+      "rating": {
+        "value": <float> (e.g. 4.9),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 4),
+      "total": <int> (e.g. 4),
+      "rating": {
+        "value": <float> (e.g. 3.8),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 3),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 1738),
+            "taskId": <int> (e.g. 1683),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Введение в ботанику, науки, ст...),
+            "availableAt": <str> (e.g. 2026-01-19T05:59:00Z),
+            "deadlineAt": <str> (e.g. 2026-01-25T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- История ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=history
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад-История 25/26),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-История-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 33),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 30),
+      "total": <int> (e.g. 30),
+      "rating": {
+        "value": <float> (e.g. 4.8),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 3),
+      "total": <int> (e.g. 3),
+      "rating": {
+        "value": <float> (e.g. 4.3),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 1),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 2399),
+            "taskId": <int> (e.g. 1857),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Происхождение государства. Рюр...),
+            "availableAt": <str> (e.g. 2025-09-15T05:59:00Z),
+            "deadlineAt": <str> (e.g. 2025-09-21T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- Обществознание ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=social_studies
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад-Обществознание 2...),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-Обществознание-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 28),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 22),
+      "total": <int> (e.g. 22),
+      "rating": {
+        "value": <float> (e.g. 4.8),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 6),
+      "total": <int> (e.g. 6),
+      "rating": {
+        "value": <float> (e.g. 4.2),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 1),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 2731),
+            "taskId": <int> (e.g. 1939),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Деятельность и её виды. Труд, ...),
+            "availableAt": <str> (e.g. 2025-09-15T06:00:00Z),
+            "deadlineAt": <str> (e.g. 2025-09-21T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- Физика ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=physics
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад-Физика 25/26),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-Физика-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 28),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 22),
+      "total": <int> (e.g. 22),
+      "rating": {
+        "value": <float> (e.g. 4.2),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 6),
+      "total": <int> (e.g. 6),
+      "rating": {
+        "value": <float> (e.g. 4.5),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 1),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 3107),
+            "taskId": <int> (e.g. 2034),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Физика и научные модели. Измер...),
+            "availableAt": <str> (e.g. 2025-09-15T06:00:00Z),
+            "deadlineAt": <str> (e.g. 2025-09-21T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- География ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=geography
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад-География 25/26),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-География-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 24),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 20),
+      "total": <int> (e.g. 20),
+      "rating": {
+        "value": <float> (e.g. 5.0),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 4),
+      "total": <int> (e.g. 4),
+      "rating": {
+        "value": <float> (e.g. 4.3),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 3),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 692),
+            "taskId": <int> (e.g. 1507),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Литосфера),
+            "availableAt": <str> (e.g. 2026-01-19T05:59:00Z),
+            "deadlineAt": <str> (e.g. 2026-01-25T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- Литература ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=literature
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад-Литература 25/26),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-Литература-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 24),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 20),
+      "total": <int> (e.g. 20),
+      "rating": {
+        "value": <float> (e.g. 4.4),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 3),
+      "total": <int> (e.g. 4),
+      "rating": {
+        "value": <float> (e.g. 4.0),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 3),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 1401),
+            "taskId": <int> (e.g. 1599),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Александр Пушкин – «Капитанска...),
+            "availableAt": <str> (e.g. 2026-01-19T05:59:00Z),
+            "deadlineAt": <str> (e.g. 2026-01-25T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- Основы безопасности ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=basics_of_security
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад-ОБЖ 25/26),
+  },
+  "program": {
+    "title": <str> (e.g. Школа/Колледж-ОБЖ-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 15),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 12),
+      "total": <int> (e.g. 12),
+      "rating": {
+        "value": <float> (e.g. 5.0),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 3),
+      "total": <int> (e.g. 3),
+      "rating": {
+        "value": <float> (e.g. 5.0),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 1),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 3443),
+            "taskId": <int> (e.g. 2136),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Твоя безопасность в повседневн...),
+            "availableAt": <str> (e.g. 2025-09-15T06:00:00Z),
+            "deadlineAt": <str> (e.g. 2025-09-21T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 5.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- Химия ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=chemistry
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад Химия 25/26 новы...),
+  },
+  "program": {
+    "title": <str> (e.g. Колледж-Химия-25/26),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 15),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 3),
+      "total": <int> (e.g. 3),
+      "rating": {
+        "value": <float> (e.g. 4.3),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 1),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 4453),
+            "taskId": <int> (e.g. 2274),
+            "type": <str> (e.g. webinar),
+            "title": <str> (e.g. Научпоп: Введение в химию: осн...),
+            "availableAt": <str> (e.g. 2025-09-17T12:00:00Z),
+            "deadlineAt": <str> (e.g. 2025-09-21T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": <NoneType> (e.g. None),
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+
+--- Русский ---
+URL: https://edu-avatar.skyeng.ru/api/v2/college-student-cabinet/single-student-account/school-subject?subjectEnum=russian
+Structure:
+{
+  "stream": {
+    "title": <str> (e.g. Колледж Запад - Русский язык 2...),
+  },
+  "program": {
+    "title": <str> (e.g. Школа/Колледж-Русский язык-25/...),
+  },
+  "metrics": {
+    "lessonsMetric": {
+      "current": <int> (e.g. 1),
+      "total": <int> (e.g. 50),
+      "rating": {
+        "value": <float> (e.g. 4.7),
+        "color": <str> (e.g. green),
+      },
+    },
+    "homeworkMetric": {
+      "current": <int> (e.g. 22),
+      "total": <int> (e.g. 22),
+      "rating": {
+        "value": <float> (e.g. 4.4),
+        "color": <str> (e.g. green),
+      },
+    },
+    "journalMetric": {
+      "current": <int> (e.g. 0),
+      "total": <int> (e.g. 0),
+      "rating": {
+        "value": <NoneType> (e.g. None),
+        "color": <str> (e.g. gray),
+      },
+    },
+    "testsMetric": {
+      "current": <int> (e.g. 6),
+      "total": <int> (e.g. 6),
+      "rating": {
+        "value": <float> (e.g. 4.5),
+        "color": <str> (e.g. green),
+      },
+    },
+  },
+  "schedule": {
+    "hidden": <list> (e.g. []),
+    "open": [
+      {
+        "title": <str> (e.g. Модуль 1),
+        "lessons": [
+          {
+            "streamTaskId": <int> (e.g. 3835),
+            "taskId": <int> (e.g. 2152),
+            "type": <str> (e.g. self_study),
+            "title": <str> (e.g. Самостоятельные и служебные ча...),
+            "availableAt": <str> (e.g. 2025-09-15T06:00:00Z),
+            "deadlineAt": <str> (e.g. 2025-09-21T06:00:00Z),
+            "teacherName": <NoneType> (e.g. None),
+            "taskUrl": <NoneType> (e.g. None),
+            "recordUrl": <NoneType> (e.g. None),
+            "score": <NoneType> (e.g. None),
+            "completeness": <NoneType> (e.g. None),
+            "homework": {
+              "score": <float> (e.g. 4.0),
+              "taskUrl": <str> (e.g. https://vimbox.skyeng.ru/kids/...),
+              "completeness": <int> (e.g. 100),
+            },
+            "joinedAt": <NoneType> (e.g. None),
+            "closedAt": <NoneType> (e.g. None),
+            "attempts": <NoneType> (e.g. None),
+            "disabled": <bool> (e.g. False),
+            "canRedo": <bool> (e.g. False),
+            "passed": <bool> (e.g. False),
+          },
+        ],
+      },
+    ],
+  },
+},
+
+==================================================
+

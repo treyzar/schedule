@@ -10,7 +10,6 @@ interface MessageInputProps {
 
 const MessageInput = ({ onSendMessage, disabled = false }: MessageInputProps) => {
   const [message, setMessage] = useState('');
-  const [isRecording, setIsRecording] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -38,41 +37,17 @@ const MessageInput = ({ onSendMessage, disabled = false }: MessageInputProps) =>
     }
   };
 
-  const handleVoiceInput = () => {
-    setIsRecording(!isRecording);
-    if (!isRecording) {
-      setTimeout(() => {
-        setIsRecording(false);
-        setMessage('Пример голосового ввода: Найди свободное время завтра');
-      }, 2000);
-    }
-  };
-
   return (
     <form onSubmit={handleSubmit} className="border-t border-border bg-card p-4">
       <div className="flex items-end gap-2">
-        <button
-          type="button"
-          onClick={handleVoiceInput}
-          disabled={disabled}
-          className={`flex-shrink-0 p-3 rounded-full transition-smooth ${
-            isRecording
-              ? 'bg-error text-error-foreground animate-pulse'
-              : 'bg-muted text-foreground hover:bg-primary hover:text-primary-foreground'
-          } disabled:opacity-50 disabled:cursor-not-allowed`}
-          aria-label={isRecording ? 'Остановить запись' : 'Голосовой ввод'}
-        >
-          <Icon name={isRecording ? 'StopIcon' : 'MicrophoneIcon'} size={20} />
-        </button>
-
         <div className="flex-1 relative">
           <textarea
             ref={textareaRef}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Задайте вопрос или опишите задачу..."
-            disabled={disabled || isRecording}
+            placeholder="Задайте вопрос о вашем расписании..."
+            disabled={disabled}
             rows={1}
             className="w-full px-4 py-3 pr-12 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ minHeight: '48px', maxHeight: '120px' }}
@@ -91,7 +66,7 @@ const MessageInput = ({ onSendMessage, disabled = false }: MessageInputProps) =>
 
         <button
           type="submit"
-          disabled={!message.trim() || disabled || isRecording}
+          disabled={!message.trim() || disabled}
           className="flex-shrink-0 p-3 rounded-full bg-primary text-primary-foreground hover:shadow-elevation-md transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Отправить сообщение"
         >

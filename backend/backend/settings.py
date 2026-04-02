@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Загрузка переменных окружения
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(qu387p(obl_ah1ot)z%xew24+zvf!h1&p)s^h8u_1^d7+3kvq'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-(qu387p(obl_ah1ot)z%xew24+zvf!h1&p)s^h8u_1^d7+3kvq')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -45,30 +49,49 @@ INSTALLED_APPS = [
     'ai',
     'parse_avatar',
     'parse_calendar',
+    'health',
 ]
+
+# URL сервисов (должны быть определены ДО использования в MIDDLEWARE)
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:4028')
+BACKEND_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # CSRF отключён для разработки - API использует сессионную авторизацию
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'middleware.skyeng_auth.SkyengAuthRequiredMiddleware',  # Отключено временно
 ]
 
+# CORS настройки для работы с сессиями и cookie
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Для Create React App
-    "http://127.0.0.1:3000",
-    "http://localhost:4028",  # <-- ВАШ ПОРТ ФРОНТЕНДА
+    FRONTEND_URL,
+    "http://localhost:4028",
     "http://127.0.0.1:4028",
-    "http://localhost:5173",  # Для Vite
-    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
 ]
 
-# 2. Разрешаем браузеру отправлять cookie вместе с кросс-доменными запросами
+# CSRF trusted origins для разработки
+CSRF_TRUSTED_ORIGINS = [
+    FRONTEND_URL,
+    "http://localhost:4028",
+    "http://127.0.0.1:4028",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+# Разрешаем отправку cookie с кросс-доменными запросами
 CORS_ALLOW_CREDENTIALS = True
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -101,9 +124,10 @@ DATABASES = {
 }
 
 CLIENT_SECRETS_FILE = os.path.join(BASE_DIR, 'client_secrets.json')
-GOOGLE_SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-OLLAMA_BASE_URL = "http://127.0.0.1:11434/v1"
-OLLAMA_MODEL_NAME = "gemma3:4b"
+# Ollama конфигурация
+# По умолчанию используем host.docker.internal для доступа к хосту
+OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL', 'http://host.docker.internal:11434')
+OLLAMA_MODEL_NAME = os.getenv('OLLAMA_MODEL_NAME', 'llama3.2')
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -152,4 +176,46 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 ASGI_APPLICATION = 'backend.asgi.application'
-FRONTEND_URL = "http://localhost:4028"
+
+# Redis конфигурация
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(os.getenv('REDIS_URL', 'redis://redis:6379/1'))],
+        },
+    },
+}
+
+# --- Session & Security Settings ---
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = False  # Должно быть False для http://localhost
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_PATH = '/'
+SESSION_COOKIE_DOMAIN = None   # Важно для localhost
+SESSION_SAVE_EVERY_REQUEST = True # Принудительно сохраняем сессию при каждом запросе
+
+# Expose headers для CORS
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization', 'X-CSRFToken']
+CORS_ALLOW_CREDENTIALS = True
+
+# Ollama конфигурация
+OLLAMA_BASE_URL = os.getenv('OLLAMA_BASE_URL', 'http://host.docker.internal:11434')
+OLLAMA_MODEL_NAME = os.getenv('OLLAMA_MODEL_NAME', 'qwen3.5:9b')
+
+# Google OAuth конфигурация
+CLIENT_SECRETS_FILE = os.path.join(BASE_DIR, 'client_secrets.json')
+# Полные права для создания и редактирования событий
+GOOGLE_SCOPES = [
+    'https://www.googleapis.com/auth/calendar',
+    'https://www.googleapis.com/auth/calendar.events',
+    'https://www.googleapis.com/auth/userinfo.email',
+]
+GOOGLE_SCOPES_READONLY = ['https://www.googleapis.com/auth/calendar.readonly']
+
+# Skyeng API конфигурация
+SKYENG_API_BASE_URL = os.getenv('SKYENG_API_BASE_URL', 'https://api.skyeng.ru')

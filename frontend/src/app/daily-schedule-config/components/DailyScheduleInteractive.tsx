@@ -1,16 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
+import Icon from '@/components/ui/AppIcon';
+import EventCreatorModal from '@/components/ui/EventCreatorModal';
 
 // Предполагается, что эти компоненты существуют и импортированы.
 // Если их нет, вы можете временно закомментировать импорты и
-// заменить вызовы компонентов на простые <div> для теста.
+// заменять вызовы компонентов на простые <div> для теста.
 import TimelineGrid from './TimelineGrid';
 import EventDetailsModal from './EventDetailsModal';
 import DayConfigPanel from './DayConfigPanel';
 import ScheduleStats from './ScheduleStats';
 import QuickTemplates from './QuickTemplates';
-import Icon from '@/components/ui/AppIcon';
 
 // --- Интерфейсы для типизации данных ---
 
@@ -48,6 +51,9 @@ interface Template {
 // --- Основной компонент ---
 
 const DailyScheduleInteractive = () => {
+  const router = useRouter();
+  const { is_authenticated, isLoading: authLoading } = useAuth();
+  
   // --- Состояния компонента ---
   const [isHydrated, setIsHydrated] = useState(false);
   const [events, setEvents] = useState<ScheduleEvent[]>([]);
@@ -63,17 +69,45 @@ const DailyScheduleInteractive = () => {
     autoOptimize: true,
   });
 
+  // Состояния для модального окна создания события
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [createModalInitialData, setCreateModalInitialData] = useState<{
+    start_datetime?: string;
+    end_datetime?: string;
+  }>({});
+
+  // Проверка авторизации
+  useEffect(() => {
+    if (!authLoading && !is_authenticated) {
+      // Если не авторизован, перенаправляем на страницу авторизации
+      router.push('/google-auth');
+    }
+  }, [is_authenticated, authLoading, router]);
+
   useEffect(() => {
     setIsHydrated(true);
 
     const fetchInitialData = async () => {
+      // Не загружаем данные, если не авторизованы
+      if (!is_authenticated) {
+        setIsLoading(false);
+        return;
+      }
+
       setIsLoading(true);
       setError(null);
       try {
-        // --- ИЗМЕНЯЕМ URL ЗАПРОСА ---
-        const response = await fetch('http://localhost:8001/parse_calendar/initial-data/', {
+        const response = await fetch('http://localhost:8000/parse_calendar/initial-data/', {
           credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         });
+
+        // Обработка 401 ошибки
+        if (response.status === 401) {
+          throw new Error('Требуется авторизация. Пожалуйста, войдите через Google.');
+        }
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -81,40 +115,48 @@ const DailyScheduleInteractive = () => {
         }
 
         const data = await response.json();
-        const fetchedEvents = data.calendar_events || []; // <-- Получаем события из объекта
+        const fetchedEvents = data.calendar_events || [];
 
-        // ... (код форматирования событий остается тем же) ...
-        const formattedEvents = fetchedEvents.map((event: any) => ({
-          id: event.id,
-          title: event.summary || 'Без названия',
-          startTime: new Date(event.start.dateTime || event.start.date).toLocaleTimeString(
-            'ru-RU',
-            {
+        // Форматирование событий
+        const formattedEvents: ScheduleEvent[] = fetchedEvents.map((event: any) => {
+          const startDate = new Date(event.start.dateTime || event.start.date);
+          const endDate = new Date(event.end.dateTime || event.end.date);
+          
+          return {
+            id: event.id,
+            title: event.summary || 'Без названия',
+            startTime: startDate.toLocaleTimeString('ru-RU', {
               hour: '2-digit',
               minute: '2-digit',
-            }
-          ),
-          endTime: new Date(event.end.dateTime || event.end.date).toLocaleTimeString('ru-RU', {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
-          description: event.description || '',
-          category: 'meeting',
-          color: '#F59E0B',
-        }));
+            }),
+            endTime: endDate.toLocaleTimeString('ru-RU', {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            description: event.description || '',
+            category: 'meeting',
+            color: '#F59E0B',
+          };
+        });
 
         setEvents(formattedEvents);
       } catch (err: any) {
+        console.error('Failed to fetch initial data:', err);
         setError(err.message);
+        
+        // Если ошибка авторизации, перенаправляем
+        if (err.message.includes('авторизация')) {
+          setTimeout(() => {
+            router.push('/google-auth');
+          }, 2000);
+        }
       } finally {
         setIsLoading(false);
       }
     };
 
-    // Логика с ?auth=success больше не нужна, т.к. бэкенд делает всю работу.
-    // Просто запускаем fetch при загрузке.
     fetchInitialData();
-  }, []);
+  }, [is_authenticated, router]);
 
   // --- Обработчики действий пользователя ---
 
@@ -124,17 +166,19 @@ const DailyScheduleInteractive = () => {
   };
 
   const handleTimeSlotClick = (hour: number, minute: number) => {
-    const newEvent: ScheduleEvent = {
-      id: `new-${Date.now()}`,
-      title: 'Новое событие',
-      startTime: `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`,
-      endTime: `${(hour + 1).toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`,
-      category: 'work',
-      color: '#2D5A87',
-      description: '',
-    };
-    setSelectedEvent(newEvent);
-    setIsModalOpen(true);
+    // Создаем событие на 1 час с выбранным временем начала
+    const today = new Date();
+    const startDate = new Date(today);
+    startDate.setHours(hour, minute, 0, 0);
+    
+    const endDate = new Date(startDate);
+    endDate.setHours(hour + 1, minute, 0, 0);
+
+    setCreateModalInitialData({
+      start_datetime: startDate.toISOString(),
+      end_datetime: endDate.toISOString(),
+    });
+    setIsCreateModalOpen(true);
   };
 
   const handleSaveEvent = (eventToSave: ScheduleEvent) => {
@@ -215,6 +259,7 @@ const DailyScheduleInteractive = () => {
         </div>
       );
     }
+    
     return (
       <TimelineGrid
         events={events}
@@ -224,12 +269,12 @@ const DailyScheduleInteractive = () => {
     );
   };
 
-  if (!isHydrated) {
+  if (!isHydrated || authLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center gap-4">
-          <Icon name="ClockIcon" size={48} className="text-primary animate-pulse" />
-          <p className="text-lg font-body text-muted-foreground">Загрузка расписания...</p>
+          <Icon name="ArrowPathIcon" size={48} className="text-primary animate-spin" />
+          <p className="text-lg font-body text-muted-foreground">Загрузка...</p>
         </div>
       </div>
     );
@@ -285,6 +330,20 @@ const DailyScheduleInteractive = () => {
         }}
         onSave={handleSaveEvent}
         onDelete={handleDeleteEvent}
+      />
+
+      {/* Модальное окно создания нового события */}
+      <EventCreatorModal
+        isOpen={isCreateModalOpen}
+        onClose={() => {
+          setIsCreateModalOpen(false);
+          setCreateModalInitialData({});
+        }}
+        initialData={createModalInitialData}
+        onSuccess={(event) => {
+          // Перезагружаем страницу для обновления событий
+          window.location.reload();
+        }}
       />
     </div>
   );

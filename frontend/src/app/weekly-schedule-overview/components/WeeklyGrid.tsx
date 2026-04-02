@@ -18,9 +18,10 @@ interface WeeklyGridProps {
   currentWeek: Date;
   onEventClick: (event: Event) => void;
   onEventDrop: (eventId: string, newDay: number, newStartTime: string) => void;
+  onTimeSlotClick?: (day: number, hour: number) => void;
 }
 
-const WeeklyGrid = ({ events, currentWeek, onEventClick, onEventDrop }: WeeklyGridProps) => {
+const WeeklyGrid = ({ events, currentWeek, onEventClick, onEventDrop, onTimeSlotClick }: WeeklyGridProps) => {
   const [isHydrated, setIsHydrated] = useState(false);
   const [draggedEvent, setDraggedEvent] = useState<string | null>(null);
 
@@ -115,11 +116,12 @@ const WeeklyGrid = ({ events, currentWeek, onEventClick, onEventDrop }: WeeklyGr
                 {[0, 1, 2, 3, 4, 5, 6].map((day) => (
                   <div
                     key={`${day}-${hour}`}
-                    className={`p-1 min-h-[60px] border-r border-border hover:bg-muted/30 transition-smooth ${
+                    className={`p-1 min-h-[60px] border-r border-border hover:bg-muted/30 transition-smooth cursor-pointer ${
                       isToday(weekDates[day]) ? 'bg-primary/5' : ''
                     }`}
                     onDragOver={handleDragOver}
                     onDrop={() => handleDrop(day, hour)}
+                    onClick={() => onTimeSlotClick?.(day, hour)}
                   >
                     {getEventsForDayAndHour(day, hour).map((event) => (
                       <div

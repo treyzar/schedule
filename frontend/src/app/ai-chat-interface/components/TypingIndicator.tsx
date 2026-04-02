@@ -1,12 +1,12 @@
 'use client';
 
+import Icon from '@/components/ui/AppIcon';
+
 const TypingIndicator = () => {
   return (
     <div className="flex gap-3 mb-4">
       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-        <svg className="w-5 h-5 text-primary-foreground" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-        </svg>
+        <Icon name="SparklesIcon" size={20} className="text-primary-foreground" />
       </div>
 
       <div className="bg-card border border-border rounded-lg p-4 shadow-elevation-sm">

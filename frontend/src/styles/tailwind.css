@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
@@ -9,87 +9,87 @@
 
 @layer base {
   :root {
-    /* Background Colors */
-    --color-background: #fafbfc; /* gray-50 */
-    --color-foreground: #1f2937; /* gray-800 */
-    --color-card: #ffffff; /* white */
-    --color-card-foreground: #374151; /* gray-700 */
-    --color-popover: #ffffff; /* white */
-    --color-popover-foreground: #374151; /* gray-700 */
+    /* Background Colors - светлый фон с легким оттенком */
+    --color-background: #f8fafc; /* slate-50 */
+    --color-foreground: #1e293b; /* slate-800 */
+    --color-card: #ffffff;
+    --color-card-foreground: #334155; /* slate-700 */
+    --color-popover: #ffffff;
+    --color-popover-foreground: #334151;
 
-    /* Primary Brand Colors */
-    --color-primary: #2d5a87; /* blue-700 */
-    --color-primary-foreground: #ffffff; /* white */
+    /* Primary Brand Colors - яркий синий с фиолетовым оттенком */
+    --color-primary: #6366f1; /* indigo-500 */
+    --color-primary-foreground: #ffffff;
 
-    /* Secondary Colors */
-    --color-secondary: #4a7c59; /* green-700 */
-    --color-secondary-foreground: #ffffff; /* white */
+    /* Secondary Colors - яркий бирюзовый */
+    --color-secondary: #06b6d4; /* cyan-500 */
+    --color-secondary-foreground: #ffffff;
 
-    /* Accent Colors */
-    --color-accent: #d97706; /* amber-600 */
-    --color-accent-foreground: #ffffff; /* white */
+    /* Accent Colors - теплый коралловый */
+    --color-accent: #f97316; /* orange-500 */
+    --color-accent-foreground: #ffffff;
 
     /* Muted Colors */
-    --color-muted: #f3f4f6; /* gray-100 */
-    --color-muted-foreground: #6b7280; /* gray-500 */
+    --color-muted: #f1f5f9; /* slate-100 */
+    --color-muted-foreground: #64748b; /* slate-500 */
 
     /* Destructive/Error Colors */
-    --color-destructive: #dc2626; /* red-600 */
-    --color-destructive-foreground: #ffffff; /* white */
+    --color-destructive: #ef4444; /* red-500 */
+    --color-destructive-foreground: #ffffff;
 
-    /* Success Colors */
-    --color-success: #059669; /* emerald-600 */
-    --color-success-foreground: #ffffff; /* white */
+    /* Success Colors - яркий изумрудный */
+    --color-success: #10b981; /* emerald-500 */
+    --color-success-foreground: #ffffff;
 
     /* Warning Colors */
-    --color-warning: #d97706; /* amber-600 */
-    --color-warning-foreground: #ffffff; /* white */
+    --color-warning: #f59e0b; /* amber-500 */
+    --color-warning-foreground: #ffffff;
 
     /* Error Colors */
-    --color-error: #dc2626; /* red-600 */
-    --color-error-foreground: #ffffff; /* white */
+    --color-error: #ef4444; /* red-500 */
+    --color-error-foreground: #ffffff;
 
     /* Border and Input Colors */
-    --color-border: rgba(148, 163, 184, 0.2); /* slate-400/20 */
-    --color-input: rgba(148, 163, 184, 0.2); /* slate-400/20 */
-    --color-ring: #2d5a87; /* blue-700 */
+    --color-border: rgba(148, 163, 184, 0.25);
+    --color-input: rgba(148, 163, 184, 0.25);
+    --color-ring: #6366f1; /* indigo-500 */
 
     /* Radius */
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 18px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
   }
 
   .dark {
     /* Dark Mode Background Colors */
     --color-background: #0f172a; /* slate-900 */
-    --color-foreground: #e2e8f0; /* slate-200 */
+    --color-foreground: #f1f5f9; /* slate-100 */
     --color-card: #1e293b; /* slate-800 */
     --color-card-foreground: #e2e8f0; /* slate-200 */
-    --color-popover: #1e293b; /* slate-800 */
-    --color-popover-foreground: #e2e8f0; /* slate-200 */
+    --color-popover: #1e293b;
+    --color-popover-foreground: #e2e8f0;
 
-    /* Dark Mode Primary Colors */
-    --color-primary: #3b82f6; /* blue-500 */
-    --color-primary-foreground: #ffffff; /* white */
+    /* Dark Mode Primary Colors - ещё более яркий */
+    --color-primary: #818cf8; /* indigo-400 */
+    --color-primary-foreground: #1e293b;
 
     /* Dark Mode Secondary Colors */
-    --color-secondary: #10b981; /* emerald-500 */
-    --color-secondary-foreground: #ffffff; /* white */
+    --color-secondary: #22d3ee; /* cyan-400 */
+    --color-secondary-foreground: #1e293b;
 
     /* Dark Mode Accent Colors */
-    --color-accent: #f59e0b; /* amber-500 */
-    --color-accent-foreground: #ffffff; /* white */
+    --color-accent: #fb923c; /* orange-400 */
+    --color-accent-foreground: #1e293b;
 
     /* Dark Mode Muted Colors */
     --color-muted: #334155; /* slate-700 */
     --color-muted-foreground: #94a3b8; /* slate-400 */
 
     /* Dark Mode Border Colors */
-    --color-border: rgba(226, 232, 240, 0.1); /* slate-200/10 */
-    --color-input: rgba(226, 232, 240, 0.1); /* slate-200/10 */
-    --color-ring: #3b82f6; /* blue-500 */
+    --color-border: rgba(148, 163, 184, 0.15);
+    --color-input: rgba(148, 163, 184, 0.15);
+    --color-ring: #818cf8; /* indigo-400 */
   }
 
   * {
@@ -110,6 +110,7 @@
   h5,
   h6 {
     font-family: 'Outfit', sans-serif;
+    font-weight: 600;
   }
 
   h1 {
@@ -164,26 +165,44 @@
   }
 
   .shadow-elevation-sm {
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 1px 3px rgba(99, 102, 241, 0.1);
   }
 
   .shadow-elevation-md {
-    box-shadow: 0 3px 6px rgba(15, 23, 42, 0.1);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
   }
 
   .shadow-elevation-lg {
-    box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.15);
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.2);
   }
 
   .dark .shadow-elevation-sm {
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
   .dark .shadow-elevation-md {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 
   .dark .shadow-elevation-lg {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Градиенты для акцентов */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #ec4899 100%);
+  }
+
+  /* Эффект свечения */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+
+  .dark .glow-primary {
+    box-shadow: 0 0 24px rgba(129, 140, 248, 0.5);
   }
 }

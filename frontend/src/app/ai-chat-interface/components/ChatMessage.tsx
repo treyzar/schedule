@@ -10,17 +10,10 @@ interface ChatMessageProps {
     content: string;
     timestamp: string;
     status?: 'sending' | 'sent' | 'error';
-    suggestions?: Array<{
-      id: string;
-      title: string;
-      description: string;
-      action: string;
-    }>;
   };
-  onActionClick?: (action: string, suggestionId: string) => void;
 }
 
-const ChatMessage = ({ message, onActionClick }: ChatMessageProps) => {
+const ChatMessage = ({ message }: ChatMessageProps) => {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
@@ -50,6 +43,79 @@ const ChatMessage = ({ message, onActionClick }: ChatMessageProps) => {
     return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
   };
 
+  // Простая функция для форматирования текста с поддержкой markdown-подобного синтаксиса
+  const formatContent = (content: string) => {
+    const lines = content.split('\n');
+    const formattedLines = lines.map((line, index) => {
+      // Заголовки
+      if (line.startsWith('### ')) {
+        return (
+          <h3 key={index} className="text-sm font-heading font-semibold mt-4 mb-2">
+            {line.replace('### ', '')}
+          </h3>
+        );
+      }
+      if (line.startsWith('## ')) {
+        return (
+          <h2 key={index} className="text-base font-heading font-semibold mt-3 mb-2">
+            {line.replace('## ', '')}
+          </h2>
+        );
+      }
+      if (line.startsWith('# ')) {
+        return (
+          <h1 key={index} className="text-lg font-heading font-bold mt-3 mb-2">
+            {line.replace('# ', '')}
+          </h1>
+        );
+      }
+      // Списки
+      if (line.startsWith('- ') || line.startsWith('• ')) {
+        return (
+          <li key={index} className="ml-4 text-sm">
+            {line.substring(2)}
+          </li>
+        );
+      }
+      if (line.match(/^\d+\.\s/)) {
+        return (
+          <li key={index} className="ml-4 text-sm list-decimal">
+            {line.replace(/^\d+\.\s/, '')}
+          </li>
+        );
+      }
+      // Жирный текст
+      if (line.includes('**')) {
+        const parts = line.split('**');
+        return (
+          <p key={index} className="text-sm mb-1">
+            {parts.map((part, i) =>
+              i % 2 === 1 ? (
+                <strong key={i} className="font-semibold">
+                  {part}
+                </strong>
+              ) : (
+                part
+              )
+            )}
+          </p>
+        );
+      }
+      // Пустые строки
+      if (line.trim() === '') {
+        return <br key={index} />;
+      }
+      // Обычный текст
+      return (
+        <p key={index} className="text-sm mb-1">
+          {line}
+        </p>
+      );
+    });
+
+    return formattedLines;
+  };
+
   return (
     <div className={`flex gap-3 mb-4 ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
       {message.type === 'ai' && (
@@ -66,35 +132,9 @@ const ChatMessage = ({ message, onActionClick }: ChatMessageProps) => {
               : 'bg-card border border-border shadow-elevation-sm'
           }`}
         >
-          <p className="text-sm font-body whitespace-pre-wrap">{message.content}</p>
-
-          {message.suggestions && message.suggestions.length > 0 && (
-            <div className="mt-4 space-y-2">
-              {message.suggestions.map((suggestion) => (
-                <div
-                  key={suggestion.id}
-                  className="p-3 rounded-md bg-muted border border-border hover:border-primary transition-smooth"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <h4 className="text-sm font-heading font-semibold text-foreground mb-1">
-                        {suggestion.title}
-                      </h4>
-                      <p className="text-xs font-caption text-muted-foreground">
-                        {suggestion.description}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => onActionClick?.(suggestion.action, suggestion.id)}
-                      className="flex-shrink-0 px-3 py-1.5 text-xs font-body font-medium bg-primary text-primary-foreground rounded-md hover:shadow-elevation-md transition-smooth"
-                    >
-                      Применить
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="font-body whitespace-pre-wrap">
+            {message.type === 'ai' ? formatContent(message.content) : message.content}
+          </div>
         </div>
 
         <div

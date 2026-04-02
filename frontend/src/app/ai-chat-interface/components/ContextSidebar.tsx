@@ -4,98 +4,112 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 
-interface ContextEvent {
+export interface CalendarEvent {
   id: string;
   title: string;
-  date: string;
-  time: string;
-  type: 'meeting' | 'task' | 'reminder';
+  start: { dateTime?: string; date?: string };
+  end: { dateTime?: string; date?: string };
+  description?: string;
+  location?: string;
+  extendedProperties?: {
+    private?: {
+      category?: string;
+      priority?: string;
+    };
+  };
 }
 
-interface SuggestedTimeSlot {
+export interface TimeSlot {
   id: string;
   date: string;
   startTime: string;
   endTime: string;
-  duration: string;
+  durationMinutes: number;
+}
+
+export interface TimeStatistics {
+  totalMeetings: number;
+  totalTasks: number;
+  totalFreeTime: number; // в минутах
+  busiestDay: string;
+  averageDayLength: number; // в часах
 }
 
 interface ContextSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  events?: CalendarEvent[];
+  freeSlots?: TimeSlot[];
+  statistics?: TimeStatistics;
+  isLoading?: boolean;
 }
 
-const ContextSidebar = ({ isOpen, onClose }: ContextSidebarProps) => {
+const ContextSidebar = ({
+  isOpen,
+  onClose,
+  events = [],
+  freeSlots = [],
+  statistics,
+  isLoading = false,
+}: ContextSidebarProps) => {
   const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     setIsHydrated(true);
   }, []);
 
-  const referencedEvents: ContextEvent[] = [
-    {
-      id: '1',
-      title: 'Встреча с командой',
-      date: '15.01.2026',
-      time: '10:00 - 11:00',
-      type: 'meeting',
-    },
-    {
-      id: '2',
-      title: 'Подготовка отчета',
-      date: '15.01.2026',
-      time: '14:00 - 16:00',
-      type: 'task',
-    },
-    {
-      id: '3',
-      title: 'Звонок клиенту',
-      date: '16.01.2026',
-      time: '09:00 - 09:30',
-      type: 'reminder',
-    },
-  ];
-
-  const suggestedSlots: SuggestedTimeSlot[] = [
-    {
-      id: '1',
-      date: '15.01.2026',
-      startTime: '11:30',
-      endTime: '12:30',
-      duration: '1 час',
-    },
-    {
-      id: '2',
-      date: '16.01.2026',
-      startTime: '14:00',
-      endTime: '15:00',
-      duration: '1 час',
-    },
-    {
-      id: '3',
-      date: '17.01.2026',
-      startTime: '10:00',
-      endTime: '11:00',
-      duration: '1 час',
-    },
-  ];
-
-  const getEventIcon = (type: ContextEvent['type']) => {
-    switch (type) {
-      case 'meeting':
-        return 'UsersIcon';
-      case 'task':
-        return 'ClipboardDocumentCheckIcon';
-      case 'reminder':
-        return 'BellIcon';
-      default:
-        return 'CalendarIcon';
+  const getEventIcon = (event: CalendarEvent) => {
+    const category = event.extendedProperties?.private?.category || '';
+    if (category.toLowerCase().includes('встреча') || category.toLowerCase().includes('meeting')) {
+      return 'UsersIcon';
     }
+    if (category.toLowerCase().includes('задача') || category.toLowerCase().includes('task')) {
+      return 'ClipboardDocumentCheckIcon';
+    }
+    if (category.toLowerCase().includes('напоминание')) {
+      return 'BellIcon';
+    }
+    return 'CalendarIcon';
+  };
+
+  const formatEventTime = (event: CalendarEvent) => {
+    const start = event.start.dateTime || event.start.date;
+    const end = event.end.dateTime || event.end.date;
+    if (!start || !end) return '';
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const startTime = startDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    const endTime = endDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+    return `${startTime} - ${endTime}`;
+  };
+
+  const formatEventDate = (event: CalendarEvent) => {
+    const start = event.start.dateTime || event.start.date;
+    if (!start) return '';
+    return new Date(start).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit' });
+  };
+
+  const getCategoryColor = (event: CalendarEvent) => {
+    const category = event.extendedProperties?.private?.category || '';
+    const colors: Record<string, string> = {
+      'работа': 'bg-blue-100 text-blue-800',
+      'личное': 'bg-green-100 text-green-800',
+      'учеба': 'bg-purple-100 text-purple-800',
+      'встреча': 'bg-orange-100 text-orange-800',
+    };
+    const key = category.toLowerCase() as string;
+    return colors[key] || 'bg-gray-100 text-gray-800';
   };
 
   if (!isHydrated) {
     return null;
   }
+
+  const recentEvents = events.slice(0, 5);
+  const upcomingFreeSlots = freeSlots.slice(0, 3);
 
   return (
     <>
@@ -115,7 +129,7 @@ const ContextSidebar = ({ isOpen, onClose }: ContextSidebarProps) => {
         `}
       >
         <div className="sticky top-0 bg-card border-b border-border p-4 flex items-center justify-between z-10">
-          <h3 className="text-sm font-heading font-semibold text-foreground">Контекст беседы</h3>
+          <h3 className="text-sm font-heading font-semibold text-foreground">Контекст</h3>
           <button
             onClick={onClose}
             className="lg:hidden p-1 rounded-md hover:bg-muted transition-smooth"
@@ -126,72 +140,126 @@ const ContextSidebar = ({ isOpen, onClose }: ContextSidebarProps) => {
         </div>
 
         <div className="p-4 space-y-6">
-          <div>
-            <h4 className="text-xs font-caption font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-              Упомянутые события
-            </h4>
-            <div className="space-y-2">
-              {referencedEvents.map((event) => (
-                <div
-                  key={event.id}
-                  className="p-3 rounded-md bg-muted hover:bg-muted/70 transition-smooth cursor-pointer"
-                >
-                  <div className="flex items-start gap-2">
-                    <Icon
-                      name={getEventIcon(event.type) as any}
-                      size={16}
-                      className="text-primary mt-0.5 flex-shrink-0"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-body text-foreground font-medium truncate">
-                        {event.title}
-                      </p>
-                      <p className="text-xs font-caption text-muted-foreground mt-1">
-                        {event.date}
-                      </p>
-                      <p className="text-xs font-caption text-muted-foreground">{event.time}</p>
+          {isLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <Icon name="ArrowPathIcon" size={24} className="animate-spin text-primary" />
+            </div>
+          ) : (
+            <>
+              {statistics && (
+                <div>
+                  <h4 className="text-xs font-caption font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                    Статистика за неделю
+                  </h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center p-2 rounded-md bg-muted">
+                      <span className="text-xs font-body text-muted-foreground">Встречи</span>
+                      <span className="text-sm font-semibold">{statistics.totalMeetings}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 rounded-md bg-muted">
+                      <span className="text-xs font-body text-muted-foreground">Задачи</span>
+                      <span className="text-sm font-semibold">{statistics.totalTasks}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 rounded-md bg-muted">
+                      <span className="text-xs font-body text-muted-foreground">Свободное время</span>
+                      <span className="text-sm font-semibold">{Math.round(statistics.totalFreeTime / 60)}ч</span>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
 
-          <div>
-            <h4 className="text-xs font-caption font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-              Предложенные слоты
-            </h4>
-            <div className="space-y-2">
-              {suggestedSlots.map((slot) => (
-                <div
-                  key={slot.id}
-                  className="p-3 rounded-md border border-border hover:border-primary transition-smooth"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-body text-foreground font-medium">
-                      {slot.date}
-                    </span>
-                    <span className="text-xs font-caption text-muted-foreground">
-                      {slot.duration}
-                    </span>
+              {recentEvents.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-caption font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                    Последние события
+                  </h4>
+                  <div className="space-y-2">
+                    {recentEvents.map((event) => (
+                      <div
+                        key={event.id}
+                        className="p-3 rounded-md bg-muted hover:bg-muted/70 transition-smooth cursor-pointer"
+                      >
+                        <div className="flex items-start gap-2">
+                          <Icon
+                            name={getEventIcon(event) as any}
+                            size={16}
+                            className="text-primary mt-0.5 flex-shrink-0"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-body text-foreground font-medium truncate">
+                              {event.title}
+                            </p>
+                            <div className="flex items-center gap-2 mt-1">
+                              <span className={`text-xs px-2 py-0.5 rounded-full ${getCategoryColor(event)}`}>
+                                {event.extendedProperties?.private?.category || 'Общее'}
+                              </span>
+                            </div>
+                            <p className="text-xs font-caption text-muted-foreground mt-1">
+                              {formatEventDate(event)}
+                            </p>
+                            <p className="text-xs font-caption text-muted-foreground">
+                              {formatEventTime(event)}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-caption text-muted-foreground">
-                    <Icon name="ClockIcon" size={14} />
-                    <span>
-                      {slot.startTime} - {slot.endTime}
-                    </span>
-                  </div>
-                  <button className="w-full mt-2 px-3 py-1.5 text-xs font-body font-medium bg-primary text-primary-foreground rounded-md hover:shadow-elevation-md transition-smooth">
-                    Добавить в календарь
-                  </button>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
+
+              {upcomingFreeSlots.length > 0 && (
+                <div>
+                  <h4 className="text-xs font-caption font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+                    Свободные слоты
+                  </h4>
+                  <div className="space-y-2">
+                    {upcomingFreeSlots.map((slot) => (
+                      <div
+                        key={slot.id}
+                        className="p-3 rounded-md border border-border hover:border-primary transition-smooth"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm font-body text-foreground font-medium">
+                            {slot.date}
+                          </span>
+                          <span className="text-xs font-caption text-muted-foreground">
+                            {Math.round(slot.durationMinutes / 60)}ч {slot.durationMinutes % 60}мин
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs font-caption text-muted-foreground">
+                          <Icon name="ClockIcon" size={14} />
+                          <span>
+                            {slot.startTime} - {slot.endTime}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {recentEvents.length === 0 && !statistics && (
+                <div className="text-center py-8">
+                  <Icon name="CalendarIcon" size={40} className="mx-auto text-muted-foreground mb-2" />
+                  <p className="text-sm font-body text-muted-foreground">
+                    Нет данных о событиях
+                  </p>
+                  <Link
+                    href="/weekly-schedule-overview"
+                    className="mt-3 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:shadow-elevation-md transition-smooth"
+                  >
+                    <Icon name="CalendarDaysIcon" size={16} />
+                    Открыть календарь
+                  </Link>
+                </div>
+              )}
+            </>
+          )}
 
           <div>
             <h4 className="text-xs font-caption font-semibold text-muted-foreground uppercase tracking-wide mb-3">
-              Быстрый переход
+              Навигация
             </h4>
             <div className="space-y-2">
               <Link

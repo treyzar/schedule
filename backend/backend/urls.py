@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('parse_avatar/', include('parse_avatar.urls')),
     path('parse_calendar/', include('parse_calendar.urls')),
-    path('api/ai/', include('ai.urls')), 
+    path('api/ai/', include('ai.urls')),
+    path('health/', include('health.urls')),
 ]

@@ -41,7 +41,6 @@ export default function GoogleCalendarIntegrationPage() {
         </div>
       </main>
 
-      <TabNavigation />
     </div>
   );
 }

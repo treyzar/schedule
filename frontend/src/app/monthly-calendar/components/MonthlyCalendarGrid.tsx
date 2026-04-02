@@ -16,6 +16,7 @@ interface MonthlyCalendarGridProps {
   events: CalendarEvent[];
   onDateClick: (date: Date) => void;
   onEventClick: (event: CalendarEvent) => void;
+  onDayClick?: (date: Date, hour: number) => void;
 }
 
 const MonthlyCalendarGrid = ({
@@ -23,6 +24,7 @@ const MonthlyCalendarGrid = ({
   events,
   onDateClick,
   onEventClick,
+  onDayClick,
 }: MonthlyCalendarGridProps) => {
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -120,7 +122,9 @@ const MonthlyCalendarGrid = ({
               `}
               onClick={() => {
                 if (isValidDay) {
-                  onDateClick(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
+                  const clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                  // Если есть onDayClick, вызываем его с временем 9:00 (начало рабочего дня)
+                  onDayClick?.(clickedDate, 9);
                 }
               }}
             >

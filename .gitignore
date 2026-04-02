@@ -8,8 +8,17 @@ __pycache__/
 
 # Environment Variables
 .env
-.env.*
+.env.local
 !.env.example
+*.env
+!*.env.example
+
+# Google OAuth credentials (SENSITIVE)
+client_secrets.json
+credentials.json
+
+# Telegram bot data
+skyeng_data/
 
 # Next.js
 .next/

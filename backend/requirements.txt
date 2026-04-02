@@ -1,0 +1,25 @@
+django
+django-rest-framework
+django-cors-headers
+channels
+channels-redis
+asgiref
+beautifulsoup4
+requests
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+openai
+python-dotenv
+pytz
+daphne
+aiohttp
+gender-guesser
+tenacity
+cryptography
+
+# Testing
+pytest
+pytest-asyncio
+pytest-django
+pytest-mock

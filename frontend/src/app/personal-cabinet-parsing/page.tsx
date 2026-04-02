@@ -36,7 +36,6 @@ export default function PersonalCabinetParsingPage() {
             </p>
           </div>
 
-          <TabNavigation />
 
           <div className="mt-6">
             <ParsingInteractive />

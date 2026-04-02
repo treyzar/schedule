@@ -1,12 +1,25 @@
 # ai/urls.py
 
 from django.urls import path
-from . import views
-from django.views.generic import TemplateView # <-- Импортируйте TemplateView
+from .views import (
+    ScheduleContextView,
+    ChatView,
+    ParseIntentView,
+    CreateEventFromNaturalLanguage,
+    CheckEventConflictView,
+    FindFreeTimeView,
+)
 
 urlpatterns = [
-    # --- НОВЫЙ МАРШРУТ ДЛЯ ТЕСТОВОЙ СТРАНИЦЫ ---
-    # Он будет доступен по адресу /api/ai/test/
-    # --- Существующие API-маршруты ---
-path('chat/', views.ChatView.as_view(), name='ai_chat'),
+    # === Контекст и чат ===
+    path('schedule-context/', ScheduleContextView.as_view(), name='schedule_context'),
+    path('chat/', ChatView.as_view(), name='ai_chat'),
+    
+    # === AI Intent Parser ===
+    path('intent/parse/', ParseIntentView.as_view(), name='parse_intent'),
+    
+    # === Создание событий из естественного языка ===
+    path('events/create/', CreateEventFromNaturalLanguage.as_view(), name='create_event_nlp'),
+    path('events/check-conflict/', CheckEventConflictView.as_view(), name='check_event_conflict'),
+    path('events/find-free-time/', FindFreeTimeView.as_view(), name='find_free_time'),
 ]

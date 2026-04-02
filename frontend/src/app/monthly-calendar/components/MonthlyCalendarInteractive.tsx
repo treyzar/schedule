@@ -7,6 +7,7 @@ import MonthNavigation from './MonthNavigation';
 import MonthlyStatsSidebar from './MonthlyStatsSidebar';
 import EventDetailsModal from './EventDetailsModal';
 import MiniCalendar from './MiniCalendar';
+import EventCreatorModal from '@/components/ui/EventCreatorModal';
 
 // Интерфейс для событий, используется во всех дочерних компонентах
 interface CalendarEvent {
@@ -22,11 +23,18 @@ interface CalendarEvent {
 
 const MonthlyCalendarInteractive = () => {
   const router = useRouter();
-  const [currentDate, setCurrentDate] = useState(new Date(2026, 0, 13)); // Устанавливаем текущую дату
+  const [currentDate, setCurrentDate] = useState(new Date()); // Используем текущую дату по умолчанию
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
   const [needsRefresh, setNeedsRefresh] = useState(0);
+
+  // Состояния для модального окна создания события
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [createModalInitialData, setCreateModalInitialData] = useState<{
+    start_datetime?: string;
+    end_datetime?: string;
+  }>({});
 
   // --- ЗАГРУЗКА ДАННЫХ С БЭКЕНДА ---
   useEffect(() => {
@@ -108,6 +116,21 @@ const MonthlyCalendarInteractive = () => {
     router.push(`/daily-schedule-config?date=${date.toISOString().split('T')[0]}`);
   };
 
+  const handleDayClick = (date: Date, hour: number) => {
+    // Открываем модальное окно создания события с выбранным днём и временем
+    const startDate = new Date(date);
+    startDate.setHours(hour, 0, 0, 0);
+    
+    const endDate = new Date(startDate);
+    endDate.setHours(hour + 1, 0, 0, 0);
+
+    setCreateModalInitialData({
+      start_datetime: startDate.toISOString(),
+      end_datetime: endDate.toISOString(),
+    });
+    setIsCreateModalOpen(true);
+  };
+
   const handleEventClick = (event: CalendarEvent) => {
     setSelectedEvent(event);
   };
@@ -148,6 +171,7 @@ const MonthlyCalendarInteractive = () => {
             events={events} // <-- Передаем реальные события
             onDateClick={handleDateClick}
             onEventClick={handleEventClick}
+            onDayClick={handleDayClick}
           />
 
           <div className="mt-6 lg:hidden">
@@ -165,6 +189,20 @@ const MonthlyCalendarInteractive = () => {
       </div>
 
       <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+
+      {/* Модальное окно создания нового события */}
+      <EventCreatorModal
+        isOpen={isCreateModalOpen}
+        onClose={() => {
+          setIsCreateModalOpen(false);
+          setCreateModalInitialData({});
+        }}
+        initialData={createModalInitialData}
+        onSuccess={(event) => {
+          // Перезагружаем страницу для обновления событий
+          window.location.reload();
+        }}
+      />
     </>
   );
 };

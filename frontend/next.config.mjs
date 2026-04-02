@@ -22,10 +22,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.pixabay.com',
       },
-      {
-        protocol: 'https',
-        hostname: 'img.rocket.new',
-      },
     ],
   },
   async redirects() {
@@ -36,18 +32,6 @@ const nextConfig = {
         permanent: false,
       },
     ];
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.(jsx|tsx)$/,
-      exclude: [/node_modules/],
-      use: [
-        {
-          loader: '@dhiwise/component-tagger/nextLoader',
-        },
-      ],
-    });
-    return config;
   },
 };
 

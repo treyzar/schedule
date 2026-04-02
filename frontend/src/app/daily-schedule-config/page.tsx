@@ -27,9 +27,6 @@ export default function DailyScheduleConfigPage() {
             </div>
           </div>
 
-          <div className="mb-6">
-            <TabNavigation />
-          </div>
 
           <DailyScheduleInteractive />
         </div>

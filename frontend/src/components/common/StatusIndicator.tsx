@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
 interface IntegrationStatus {
@@ -12,20 +12,54 @@ interface IntegrationStatus {
 
 const StatusIndicator = () => {
   const [showDetails, setShowDetails] = useState(false);
-  const [integrations, setIntegrations] = useState<IntegrationStatus[]>([
-    {
-      name: 'Google Calendar',
-      status: 'connected',
-      lastSync: '2 минуты назад',
-      icon: 'CalendarIcon',
-    },
-    {
-      name: 'Парсинг личного кабинета',
-      status: 'syncing',
-      lastSync: 'Синхронизация...',
-      icon: 'ArrowPathIcon',
-    },
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [integrations, setIntegrations] = useState<IntegrationStatus[]>([]);
+
+  // Загружаем реальный статус интеграций с бэкенда
+  useEffect(() => {
+    const fetchIntegrationStatus = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('http://localhost:8000/parse_calendar/status/', {
+          credentials: 'include',
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setIntegrations([
+            {
+              name: 'Google Calendar',
+              status: data.is_authenticated ? 'connected' : 'disconnected',
+              lastSync: data.last_sync || undefined,
+              icon: 'CalendarIcon',
+            },
+          ]);
+        } else {
+          // Если ошибка - показываем как отключено
+          setIntegrations([
+            {
+              name: 'Google Calendar',
+              status: 'disconnected',
+              icon: 'CalendarIcon',
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch integration status:', error);
+        setIntegrations([
+          {
+            name: 'Google Calendar',
+            status: 'error',
+            icon: 'CalendarIcon',
+          },
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchIntegrationStatus();
+  }, []);
 
   const getStatusColor = (status: IntegrationStatus['status']) => {
     switch (status) {
@@ -64,6 +98,24 @@ const StatusIndicator = () => {
       : integrations.every((i) => i.status === 'connected')
         ? 'connected'
         : 'disconnected';
+
+  const handleLogout = async () => {
+    try {
+      await fetch('http://localhost:8000/parse_calendar/logout/', {
+        method: 'POST',
+        credentials: 'include',
+      });
+      // Обновляем статус после выхода
+      setIntegrations(prev => prev.map(i => ({ ...i, status: 'disconnected' as const })));
+      setShowDetails(false);
+    } catch (error) {
+      console.error('Failed to logout:', error);
+    }
+  };
+
+  const handleConnect = () => {
+    window.location.href = 'http://localhost:8000/parse_calendar/authorize/';
+  };
 
   return (
     <div className="relative">
@@ -118,15 +170,33 @@ const StatusIndicator = () => {
                 </div>
               ))}
             </div>
-            <div className="p-3 border-t border-border">
-              <button
-                onClick={() => {
-                  setShowDetails(false);
-                }}
-                className="w-full px-4 py-2 text-sm font-body text-primary hover:bg-muted rounded-md transition-smooth"
-              >
-                Управление интеграциями
-              </button>
+            <div className="p-3 border-t border-border space-y-2">
+              {integrations.some(i => i.status === 'connected') ? (
+                <>
+                  <button
+                    onClick={() => {
+                      setShowDetails(false);
+                      window.location.href = '/daily-schedule-config';
+                    }}
+                    className="w-full px-4 py-2 text-sm font-body text-primary hover:bg-muted rounded-md transition-smooth"
+                  >
+                    Открыть календарь
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full px-4 py-2 text-sm font-body text-error hover:bg-error/10 rounded-md transition-smooth"
+                  >
+                    Отключить
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={handleConnect}
+                  className="w-full px-4 py-2 text-sm font-body text-primary bg-primary/10 hover:bg-primary/20 rounded-md transition-smooth"
+                >
+                  Подключить
+                </button>
+              )}
             </div>
           </div>
         </>

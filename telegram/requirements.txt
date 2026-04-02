@@ -1,10 +1,15 @@
-# my_standalone_bot/requirements.txt
-
+# Core libraries
 aiogram
 aiohttp
 python-dotenv
-# --- NEU ---
+pytz
+
+# Google API libraries
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
-pytz # Für Zeitzonenberechnungen
+
+# Other utilities
+gender-guesser
+beautifulsoup4
+requests

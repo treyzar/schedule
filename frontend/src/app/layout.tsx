@@ -1,5 +1,8 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
+import { AuthProvider } from '@/contexts/AuthContext';
+import Header from '@/components/common/Header';
+import AuthGuard from '@/components/auth/AuthGuard';
 import '../styles/index.css';
 
 export const viewport: Viewport = {
@@ -8,8 +11,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Next.js with Tailwind CSS',
-  description: 'A boilerplate project with Next.js and Tailwind CSS',
+  title: 'SmartScheduler - Умное планирование расписания',
+  description: 'Интеллектуальная система планирования расписания с интеграцией Google Calendar и AI помощником',
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
   },
@@ -21,16 +24,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-
-        <script
-          type="module"
-          async
-          src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsmartsched7043back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"
-        />
-        <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" />
+    <html lang="ru">
+      <body className="min-h-screen bg-background font-body text-foreground antialiased">
+        <AuthProvider>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1 pt-[60px]">
+              <AuthGuard>
+                {children}
+              </AuthGuard>
+            </main>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
